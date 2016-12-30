@@ -1,0 +1,436 @@
+<%@   Title="S.G.O. - Contrato" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<com:THyperLink 
+				ID="hlkVolver"
+				NavigateUrl="?page=Obra.Contrato.Home" 
+				Text="Contratos"
+				CssClass="maintitle volver" />
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Contrato"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Número</span>
+			<com:TTextBox
+	       		ID="txtNumero"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el número de contrato"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNumero"
+				ErrorMessage="Debe ingresar el número de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label required">Proveedor</span>
+			<com:TActiveTextBox
+         		ID="txtIdProveedor"
+         		Style="display:none;" />
+			<com:TAutoComplete
+				ID="acpProveedor"
+				Width="250px"
+				MinChars="4"
+				Frequency="1"
+				OnSuggest="acpProveedor_OnSuggest"
+				OnSuggestionSelected="acpProveedor_OnSuggestionSelected"
+				ResultPanel.CssClass="acomplete"
+				Suggestions.DataKeyField="IdProveedor"
+				ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+				ClientSide.OnLoading="Element.show('callback_status')"
+           		ClientSide.OnComplete="Element.hide('callback_status')" >
+			    <prop:Suggestions.ItemTemplate>
+			    	<li><%# $this->Data['Descripcion'] %></li>
+			    </prop:Suggestions.ItemTemplate>
+			</com:TAutoComplete>
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtIdProveedor"
+				ErrorMessage="Debe seleccionar un proveedor."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+	       	<span class="label required">Fecha</span>
+			<com:TDatePicker
+				ID="dtpFecha"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpFecha"
+				ErrorMessage="Debe ingresar la fecha de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFecha"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">Monto</span>
+	       	<com:TTextBox
+		   		ID="txtMonto"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el monto de contrato"
+				AutoCompleteType="Disabled" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtMonto"
+				ErrorMessage="Debe ingresar el monto de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtMonto"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Fecha Base de Monto</span>
+			<com:TDatePicker
+				ID="dtpFechaBaseMonto"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpFechaBaseMonto"
+				ErrorMessage="Debe ingresar la fecha base del monto de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaBaseMonto"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha base de monto es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">N.L. de Autorización</span>
+			<com:TTextBox
+	       		ID="txtNLAutorizacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de autorización de contrato"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAutorizacion"
+				ErrorMessage="Debe ingresar la norma legal de autorización de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label required">N.L. de Adjudicación</span>
+			<com:TTextBox
+	       		ID="txtNLAdjudicacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de adjudicación de contrato"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAdjudicacion"
+				ErrorMessage="Debe ingresar la norma legal de adjudicación de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+	       	<br />
+	       	<com:TLabel ID="lblFechaInicio" CssClass="label required" Text="Fecha de Inicio" />
+			<com:TActiveDatePicker
+				ID="dtpFechaInicio"
+				DateFormat="dd/MM/yyyy"
+				Culture="es"
+				AutoPostBack="True"
+				OnTextChanged="dtpFechaInicio_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+		        ClientSide.OnComplete="Element.hide('callback_status')" />
+			<com:TRequiredFieldValidator
+				ID="rfvFechaInicio"
+				ControlToValidate="dtpFechaInicio"
+				ErrorMessage="Debe ingresar la fecha de inicio de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaInicio"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha de inicio es inválido (dd/mm/yyyy)." />
+			<br />
+			<com:TLabel ID="lblPlazoEjecucion" CssClass="label required" Text="Plazo de Ejecución" />
+	       	<com:TActiveTextBox
+		   		ID="txtPlazoEjecucion"
+				CssClass="small"
+				MaxLength="5"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el plazo de ejecución de contrato"
+				AutoCompleteType="Disabled"
+				AutoPostBack="True"
+				OnTextChanged="dtpFechaInicio_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+		        ClientSide.OnComplete="Element.hide('callback_status')" />
+			<com:TRequiredFieldValidator
+				ID="rfvPlazoEjecucion"
+				ControlToValidate="txtPlazoEjecucion"
+				ErrorMessage="Debe ingresar el plazo de ejecución de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtPlazoEjecucion"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Integer"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<com:TLabel ID="lblFechaFinalizacion" CssClass="label required" Text="Fecha de Finalización" />
+			<com:TActiveDatePicker
+				ID="dtpFechaFinalizacion"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ID="rfvFechaFinalizacion"
+				ControlToValidate="dtpFechaFinalizacion"
+				ErrorMessage="Debe ingresar la fecha de finalización de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaFinalizacion"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha de finalización es inválido (dd/mm/yyyy)." />
+			<com:TActivePanel 
+				ID="pnlModificacionContrato"
+				Visible="false">
+				<br />
+				<table border="0" cellpadding="10px">
+					<tr>
+						<td valign="top">
+							<span class="maintitle2">Alteraciones de Contrato</span>
+							<com:THyperLink
+								ID="btnAgregarAlteracion"
+					            NavigateUrl="?page=Obra.Contrato.Alteracion.Update"
+						        ToolTip="Haga click aquí para agregar un nuevo registro">
+					            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+						    </com:THyperLink>
+							<com:TActiveDataGrid
+							    ID="dgAlteraciones"
+								CssClass="TableForm"
+							    AlternatingItemStyle.BackColor="#EEEEEE"
+							    AutoGenerateColumns="false"
+					            AllowPaging="false"
+								AllowCustomPaging="false"
+						        AllowSorting="false"
+						        Width="300px">
+								<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+								<com:TBoundColumn DataField="NormaLegalAprobacion" HeaderText="NL Aprob." />
+								<com:TBoundColumn DataField="Tipo" HeaderText="Tipo" />
+								<com:TBoundColumn DataField="Importe" HeaderText="Importe" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+								<com:TTemplateColumn ID="tcEditarAlteracion" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+						            <prop:ItemTemplate>
+								       	<com:TActiveHyperLink
+								            ID="hlEditar"
+								            ToolTip="Haga click aquí para editar"
+								            NavigateUrl="?page=Obra.Contrato.Alteracion.Update&id=<%# $this->Parent->Data['IdAlteracion']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+								            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+								    	</com:TActiveHyperLink>
+						            </prop:ItemTemplate>
+				             	</com:TTemplateColumn>
+						  	</com:TActiveDataGrid>
+						  	<com:TLabel ID="lblAlteraciones" Text="No existen alteraciones de contrato" />
+						</td>
+						<td valign="top">
+							<span class="maintitle2">Redeterminaciones de Precio</span>
+							<com:THyperLink
+								ID="btnAgregarRedeterminacion"
+					            NavigateUrl="?page=Obra.Contrato.Redeterminacion.Update"
+						        ToolTip="Haga click aquí para agregar un nuevo registro">
+					            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+						    </com:THyperLink>
+							<com:TActiveDataGrid
+							    ID="dgRedeterminaciones"
+								CssClass="TableForm"
+							    AlternatingItemStyle.BackColor="#EEEEEE"
+							    AutoGenerateColumns="false"
+					            AllowPaging="false"
+								AllowCustomPaging="false"
+						        AllowSorting="false"
+						        Width="300px">
+								<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+								<com:TBoundColumn DataField="NormaLegalAprobacion" HeaderText="NL Aprob." />
+								<com:TBoundColumn DataField="Importe" HeaderText="Importe" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+								<com:TTemplateColumn ID="tcEditarRedeterminacion" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+						            <prop:ItemTemplate>
+								       	<com:TActiveHyperLink
+								            ID="hlEditar"
+								            ToolTip="Haga click aquí para editar"
+								            NavigateUrl="?page=Obra.Contrato.Redeterminacion.Update&id=<%# $this->Parent->Data['IdRedeterminacion']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+								            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+								    	</com:TActiveHyperLink>
+						            </prop:ItemTemplate>
+				             	</com:TTemplateColumn>
+						  	</com:TActiveDataGrid>
+						  	<com:TLabel ID="lblRedeterminaciones" Text="No existen redeterminaciones de precio" />
+						</td>
+						<td valign="top">
+							<span class="maintitle2">Ampliaciones de Plazo</span>
+						  	<com:THyperLink
+								ID="btnAgregarAmpliacion"
+					            NavigateUrl="?page=Obra.Contrato.ContratoPlazo.Update"
+						        ToolTip="Haga click aquí para agregar un nuevo registro">
+					            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+						    </com:THyperLink>
+						  	<com:TActiveDataGrid
+							    ID="dgAmpliacionesPlazo"
+								CssClass="TableForm"
+							    AlternatingItemStyle.BackColor="#EEEEEE"
+							    AutoGenerateColumns="false"
+					            AllowPaging="false"
+								AllowCustomPaging="false"
+						        AllowSorting="false"
+						        Width="300px">
+								<com:TBoundColumn DataField="NormaLegalAprobacion" HeaderText="NL Aprob." />
+								<com:TBoundColumn DataField="CantidadDias" HeaderText="Cant. Días" ItemStyle.HorizontalAlign="Right"/>
+								<com:TBoundColumn DataField="NuevaFechaFinalizacion" HeaderText="F. Finaliz." ItemStyle.HorizontalAlign="Center"/>
+								<com:TTemplateColumn ID="tcEditarAmpliacion" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+						            <prop:ItemTemplate>
+								       	<com:TActiveHyperLink
+								            ID="hlEditar"
+								            ToolTip="Haga click aquí para editar"
+								            Visible="<%# $this->Parent->Data['EditarVisible']%>"
+								            NavigateUrl="?page=Obra.Contrato.ContratoPlazo.Update&id=<%# $this->Parent->Data['IdContratoPlazo']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+								            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+								    	</com:TActiveHyperLink>
+						            </prop:ItemTemplate>
+				             	</com:TTemplateColumn>
+						  	</com:TActiveDataGrid>
+						  	<com:TLabel ID="lblAmpliacionesPlazo" Text="No existen ampliaciones de plazo" />
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<span class="maintitle2">Recepciones de Contrato</span>
+						  	<com:THyperLink
+								ID="btnAgregarRecepcion"
+					            NavigateUrl="?page=Obra.Contrato.RecepcionContrato.Update"
+						        ToolTip="Haga click aquí para agregar un nuevo registro">
+					            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+						    </com:THyperLink>
+						  	<com:TActiveDataGrid
+							    ID="dgRecepcionesContrato"
+								CssClass="TableForm"
+							    AlternatingItemStyle.BackColor="#EEEEEE"
+							    AutoGenerateColumns="false"
+					            AllowPaging="false"
+								AllowCustomPaging="false"
+						        AllowSorting="false"
+						        Width="300px">
+								<com:TBoundColumn DataField="NormaLegalAprobacion" HeaderText="NL Aprob." />
+								<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+								<com:TBoundColumn DataField="Tipo" HeaderText="Tipo" />
+								<com:TBoundColumn DataField="ParcialTotal" HeaderText="Parcial/Total" />
+								<com:TBoundColumn DataField="PorcentajeRecepcion" HeaderText="% Rec." ItemStyle.HorizontalAlign="Right" DataFormatString="#number_format({0},2,',','.')"/>
+								<com:TTemplateColumn ID="tcEditarRecepcion" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+						            <prop:ItemTemplate>
+								       	<com:TActiveHyperLink
+								            ID="hlEditar"
+								            ToolTip="Haga click aquí para editar"
+								            Visible="<%# $this->Parent->Data['EditarVisible']%>"
+								            NavigateUrl="?page=Obra.Contrato.RecepcionContrato.Update&id=<%# $this->Parent->Data['IdRecepcionContrato']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+								            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+								    	</com:TActiveHyperLink>
+						            </prop:ItemTemplate>
+				             	</com:TTemplateColumn>
+						  	</com:TActiveDataGrid>
+						  	<com:TLabel ID="lblRecepcionesContrato" Text="No existen recepciones de contrato" />
+						</td>
+						<td valign="top">
+							<span class="maintitle2">Órdenes de Trabajo</span>
+						  	<com:THyperLink
+								ID="btnAgregarOrdenTrabajo"
+					            NavigateUrl="?page=Obra.Contrato.OrdenTrabajo.Update"
+						        ToolTip="Haga click aquí para agregar un nuevo registro">
+					            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+						    </com:THyperLink>
+						  	<com:TActiveDataGrid
+							    ID="dgOrdenesTrabajo"
+								CssClass="TableForm"
+							    AlternatingItemStyle.BackColor="#EEEEEE"
+							    AutoGenerateColumns="false"
+					            AllowPaging="false"
+								AllowCustomPaging="false"
+						        AllowSorting="false"
+						        Width="300px">
+						        <com:TBoundColumn DataField="Numero" HeaderText="Nro." ItemStyle.HorizontalAlign="Right"/>
+								<com:TBoundColumn DataField="NormaLegalAutorizacion" HeaderText="NL Autoriz." />
+								<com:TBoundColumn DataField="Monto" HeaderText="Monto" ItemStyle.HorizontalAlign="Right" DataFormatString="#number_format({0},2,',','.')"/>
+								<com:TBoundColumn DataField="Deductivos" HeaderText="Deductivos" ItemStyle.HorizontalAlign="Right" DataFormatString="#number_format({0},2,',','.')"/>
+								<com:TBoundColumn DataField="PorcentajeAvance" HeaderText="% Certif." DataFormatString="#number_format({0},5,',','.')" ItemStyle.HorizontalAlign="Right"/>
+								<com:TBoundColumn DataField="MontoAvance" HeaderText="$ Certif." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+								<com:TTemplateColumn ID="tcEditarOrdenTrabajo" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+						            <prop:ItemTemplate>
+								       	<com:TActiveHyperLink
+								            ID="hlEditar"
+								            ToolTip="Haga click aquí para editar"
+								            Visible="<%# $this->Parent->Data['EditarVisible']%>"
+								            NavigateUrl="?page=Obra.Contrato.OrdenTrabajo.Update&id=<%# $this->Parent->Data['IdOrdenTrabajo']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+								            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+								    	</com:TActiveHyperLink>
+						            </prop:ItemTemplate>
+				             	</com:TTemplateColumn>
+						  	</com:TActiveDataGrid>
+						  	<com:TLabel ID="lblOrdenesTrabajo" Text="No existen órdenes de trabajo" />
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</com:TActivePanel>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

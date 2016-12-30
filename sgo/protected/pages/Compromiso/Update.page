@@ -1,0 +1,171 @@
+<%@   Title="S.G.O. - Compromisos" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<a class="maintitle volver" href="?page=Compromiso.Home">Compromisos</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Compromiso"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label">Fecha</span>
+			<com:TDatePicker
+				ID="dtpFecha"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+			    ControlToValidate="dtpFecha"
+				ErrorMessage="Debe ingresar la fecha del compromiso."
+				Display="Dynamic"
+				Text="*"		    		    
+				ValidationGroup="Register"/>			
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFecha"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">Localidad</span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad"
+	       		CssClass="largest"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlLocalidad"
+				ErrorMessage="Debe seleccionar una localidad del compromiso."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+	       	<br />
+			<span class="label required">Compromiso</span>
+			<com:TTextBox
+	       		ID="txtDenominacion"
+				CssClass="largest"
+				TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				MaxLength="500"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la descripción del compromiso."/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDenominacion"
+				ErrorMessage="Debe ingresar una descripción del compromiso."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />	
+			<span class="label required">Responsable</span>
+			<com:TDropDownList
+	       		ID="ddlResponsable"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="ApellidoNombre"
+	       		DatavalueField="IdCompromisoResponsable" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlResponsable"
+				ErrorMessage="Debe seleccionar un responsable del compromiso."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Plazo</span>
+			<com:TTextBox
+	       		ID="txtPlazo"
+				CssClass="small"
+				MaxLength="3"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el plazo estipulado del compromiso"/>
+			<br />
+			<span class="label">Latitud</span>
+			<com:TTextBox
+	       		ID="txtLatitud"
+				CssClass="medium"
+				MaxLength="20"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese coordenada de latitud de obra"/>
+			<br />
+			<span class="label">Longitud</span>
+	       	<com:TTextBox
+	       		ID="txtLongitud"
+				CssClass="medium"
+				MaxLength="20"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese coordenada de longitud de obra"/>
+	       	<br />
+	       	<com:TActivePanel 
+				ID="pnlRevision"
+				Visible="false">
+				<br />
+				<span class="label">Revisiones del Compromiso</span>
+				<com:THyperLink
+					ID="btnAgregarRevision"
+		            NavigateUrl="?page=Compromiso.RevisionUpdate"
+			        ToolTip="Haga click aquí para agregar un nuevo registro">
+		            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+			    </com:THyperLink>
+				<com:TActiveDataGrid
+				    ID="dgRevisiones"
+					CssClass="TableForm"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    AutoGenerateColumns="false"
+		            AllowPaging="false"
+					AllowCustomPaging="false"
+			        AllowSorting="false"
+			        Width="800px">
+					<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+					<com:TBoundColumn DataField="Usuario" HeaderText="Usuario" />
+					<com:TBoundColumn  ItemStyle.HorizontalAlign="Left" ItemStyle.CustomStyle="width: 500px; min-width: 500px; max-width: 500px; word-wrap: break-word; text-wrap: unrestricted" DataField="Revision" HeaderText="Revision"/>
+					<com:TTemplateColumn ID="tcEditarRevision" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+			            <prop:ItemTemplate>
+					       	<com:TActiveHyperLink
+					            ID="hlEditar"
+					            ToolTip="Haga click aquí para editar"
+					            NavigateUrl="?page=Compromiso.RevisionUpdate&idCompromiso=<%# $this->Parent->Data['IdCompromiso']%>&idRevision=<%# $this->Parent->Data['IdCompromisoRevision']%>">
+					            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+					    	</com:TActiveHyperLink>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+			  	</com:TActiveDataGrid>
+			  	<com:TLabel ID="lblRevisiones" Text="No existen revisiones del compromiso" />
+			</com:TActivePanel>	
+					
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+
+	
+</com:TContent>

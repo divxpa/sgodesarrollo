@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap
+END
+TSqlMapManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/TSqlMapManager.php
+END
+TSqlMapGateway.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/TSqlMapGateway.php
+END
+TSqlMapConfig.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/TSqlMapConfig.php
+END

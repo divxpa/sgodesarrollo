@@ -1,0 +1,80 @@
+<%@  Title="S.G.O. - Certificaciones de Contrato" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			ID="btnAgregar"
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Obra.Contrato.Certificacion.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<br />
+	<com:THyperLink
+		ID="hlkVolver"
+		CssClass="maintitle volver"
+        NavigateUrl="?page=Obra.Contrato.Home"
+        ToolTip="Volver"
+        Text="Contratos de Obra" />
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Certificaciones de Contrato"
+        CssClass="maintitle" />
+	<br /><br />
+	<span class="maintitle2">Obra: </span>
+	<com:TLabel 
+		ID="lblObra"
+		CssClass="maintitle2" /><br />
+	<span class="maintitle2">Contrato: </span>
+	<com:TLabel 
+		ID="lblContrato"
+		CssClass="maintitle2" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="TipoCertificado" HeaderText="Tipo"/>
+				<com:TBoundColumn DataField="NroCertificado" HeaderText="Nro." ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Periodo" HeaderText="Periodo" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="PorcentajeAvance" HeaderText="% Certif." DataFormatString="#number_format({0},5,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="MontoAvance" HeaderText="$ Certif." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="AnticipoFinanciero" HeaderText="Ant. Fin." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="DescuentoAnticipo" HeaderText="Dto. Ant." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="RetencionMulta" HeaderText="Ret. Multa" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="RetencionFondoReparo" HeaderText="Fdo. Reparo" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="RedeterminacionPrecios" HeaderText="Red. Precios" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="OtrosConceptos" HeaderText="Otros" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="ImporteNeto" HeaderText="Imp. Neto" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="ManoObraOcupada" HeaderText="M.Obra" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="FechaVtoPago" HeaderText="F. Vto. Pago" ItemStyle.HorizontalAlign="Center"/>
+				<com:THyperLinkColumn DataTextField="ImportePagado" DataTextFormatString="#number_format({0},2,',','.')" DataNavigateUrlField="IdCertificacion" DataNavigateUrlFormatString="javascript:OpenWindow('?page=Tesoreria.Pago.PagosByCertificado&id=%s',500,400)" HeaderText="Imp. Pagado" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Saldo" HeaderText="Saldo" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="PorcentajeAvanceAcum" HeaderText="% Acum." DataFormatString="#number_format({0},5,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="MontoAvanceAcum" HeaderText="$ Acum." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+				            Visible="<%# $this->Parent->Data['EditarVisible']%>"
+				            NavigateUrl="?page=Obra.Contrato.Certificacion.Update&id=<%# $this->Parent->Data['IdCertificacion']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

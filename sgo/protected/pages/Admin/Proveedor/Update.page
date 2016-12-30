@@ -1,0 +1,344 @@
+<%@   Title="S.G.O. - Proveedores" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<a class="maintitle volver" href="?page=Admin.Proveedor.Home">Proveedores</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Proveedor"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">CUIT</span>
+			<com:TTextBox
+	       		ID="txtCuit"
+				CssClass="medium"
+				MaxLength="13"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el CUIT del proveedor"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtCuit"
+				ErrorMessage="Debe ingresar un CUIT de proveedor."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TRegularExpressionValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtCuit"
+			    RegularExpression="^(20|23|24|27|30|33)-[0-9]{8}-[0-9]$"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un CUIT válido (00-00000000-0)." />
+			<com:TCustomValidator
+				ControlToValidate="txtCuit"
+	  			Text="*"
+		   		ErrorMessage="El CUIT del proveedor ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvCuit_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+	       	<span class="label required">Razón Social</span>
+			<com:TTextBox
+	       		ID="txtRazonSocial"
+				CssClass="largest"
+				MaxLength="255"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la razón social del proveedor"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtRazonSocial"
+				ErrorMessage="Debe ingresar la razón social del proveedor."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ControlToValidate="txtRazonSocial"
+	  			Text="*"
+		   		ErrorMessage="La razón social del proveedor ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvRazonSocial_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+	       	<span class="label">Domicilio</span>
+			<com:TTextBox
+	       		ID="txtDomicilio"
+				CssClass="largest"
+				MaxLength="255"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el domicilio del proveedor"/>
+	       	<br />
+	       	<span class="label">Localidad</span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+	       	<span class="label">Representante Técnico</span>
+			<com:TTextBox
+	       		ID="txtRepresentanteTecnico"
+				CssClass="largest"
+				MaxLength="255"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el representante técnico del proveedor"/>
+	       	<br />
+	       	<span class="label">Teléfono</span>
+			<com:TTextBox
+	       		ID="txtTelefono"
+				CssClass="largest"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el teléfono del proveedor"/>
+	       	<br />
+	       	<span class="label">E-mail</span>
+			<com:TTextBox
+	       		ID="txtEmail"
+				CssClass="largest"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el e-mail del proveedor"/>
+	       	<br />
+	       	<span class="label">Es UTE</span>
+	       	<com:TActiveCheckBox 
+	       		ID="chkEsUte"
+	       		Checked="false"
+	       		OnCheckedChanged="chkEsUte_OnCheckedChanged"
+	       		ClientSide.OnLoading="Element.show('callback_status')"
+		        ClientSide.OnComplete="Element.hide('callback_status')" />
+		    <com:TActivePanel 
+		    	ID="pnlEsUte"
+		    	Display="None">
+		    	<table class="TableForm" style="width:400px">
+					<thead>
+						<tr>
+							<th>Proveedor</th>
+							<th>% Participación</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<com:TActiveTextBox
+					         		ID="txtIdProveedor1"
+					         		Style="display:none;" />
+								<com:TAutoComplete
+									ID="acpProveedor1"
+									Width="250px"
+									MinChars="4"
+									Frequency="1"
+									OnSuggest="acpProveedor1_OnSuggest"
+									OnSuggestionSelected="acpProveedor1_OnSuggestionSelected"
+									ResultPanel.CssClass="acomplete"
+									Suggestions.DataKeyField="IdProveedor"
+									ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+									ClientSide.OnLoading="Element.show('callback_status')"
+					           		ClientSide.OnComplete="Element.hide('callback_status')" >
+								    <prop:Suggestions.ItemTemplate>
+								    	<li><%# $this->Data['Descripcion'] %></li>
+								    </prop:Suggestions.ItemTemplate>
+								</com:TAutoComplete>
+							</td>
+							<td>
+								<com:TTextBox
+							   		ID="txtPorcentaje1"
+									CssClass="small"
+									MaxLength="6"
+									AutoTrim="True"
+							   		ToolTip="Ingrese el porcentaje de socio"
+									AutoCompleteType="Disabled" />	
+							   	<com:TDataTypeValidator
+									ControlToValidate="txtPorcentaje1"
+									ErrorMessage="Debe ingresar un número válido."
+									DataType="Float"
+									Display="Dynamic"
+									Text="*"
+									ValidationGroup="Register"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<com:TActiveTextBox
+					         		ID="txtIdProveedor2"
+					         		Style="display:none;" />
+								<com:TAutoComplete
+									ID="acpProveedor2"
+									Width="250px"
+									MinChars="4"
+									Frequency="1"
+									OnSuggest="acpProveedor2_OnSuggest"
+									OnSuggestionSelected="acpProveedor2_OnSuggestionSelected"
+									ResultPanel.CssClass="acomplete"
+									Suggestions.DataKeyField="IdProveedor"
+									ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+									ClientSide.OnLoading="Element.show('callback_status')"
+					           		ClientSide.OnComplete="Element.hide('callback_status')" >
+								    <prop:Suggestions.ItemTemplate>
+								    	<li><%# $this->Data['Descripcion'] %></li>
+								    </prop:Suggestions.ItemTemplate>
+								</com:TAutoComplete>
+							</td>
+							<td>
+								<com:TTextBox
+							   		ID="txtPorcentaje2"
+									CssClass="small"
+									MaxLength="6"
+									AutoTrim="True"
+							   		ToolTip="Ingrese el porcentaje de socio"
+									AutoCompleteType="Disabled" />	
+							   	<com:TDataTypeValidator
+									ControlToValidate="txtPorcentaje2"
+									ErrorMessage="Debe ingresar un número válido."
+									DataType="Float"
+									Display="Dynamic"
+									Text="*"
+									ValidationGroup="Register"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<com:TActiveTextBox
+					         		ID="txtIdProveedor3"
+					         		Style="display:none;" />
+								<com:TAutoComplete
+									ID="acpProveedor3"
+									Width="250px"
+									MinChars="4"
+									Frequency="1"
+									OnSuggest="acpProveedor3_OnSuggest"
+									OnSuggestionSelected="acpProveedor3_OnSuggestionSelected"
+									ResultPanel.CssClass="acomplete"
+									Suggestions.DataKeyField="IdProveedor"
+									ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+									ClientSide.OnLoading="Element.show('callback_status')"
+					           		ClientSide.OnComplete="Element.hide('callback_status')" >
+								    <prop:Suggestions.ItemTemplate>
+								    	<li><%# $this->Data['Descripcion'] %></li>
+								    </prop:Suggestions.ItemTemplate>
+								</com:TAutoComplete>
+							</td>
+							<td>
+								<com:TTextBox
+							   		ID="txtPorcentaje3"
+									CssClass="small"
+									MaxLength="6"
+									AutoTrim="True"
+							   		ToolTip="Ingrese el porcentaje de socio"
+									AutoCompleteType="Disabled" />	
+							   	<com:TDataTypeValidator
+									ControlToValidate="txtPorcentaje3"
+									ErrorMessage="Debe ingresar un número válido."
+									DataType="Float"
+									Display="Dynamic"
+									Text="*"
+									ValidationGroup="Register"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<com:TActiveTextBox
+					         		ID="txtIdProveedor4"
+					         		Style="display:none;" />
+								<com:TAutoComplete
+									ID="acpProveedor4"
+									Width="250px"
+									MinChars="4"
+									Frequency="1"
+									OnSuggest="acpProveedor4_OnSuggest"
+									OnSuggestionSelected="acpProveedor4_OnSuggestionSelected"
+									ResultPanel.CssClass="acomplete"
+									Suggestions.DataKeyField="IdProveedor"
+									ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+									ClientSide.OnLoading="Element.show('callback_status')"
+					           		ClientSide.OnComplete="Element.hide('callback_status')" >
+								    <prop:Suggestions.ItemTemplate>
+								    	<li><%# $this->Data['Descripcion'] %></li>
+								    </prop:Suggestions.ItemTemplate>
+								</com:TAutoComplete>
+							</td>
+							<td>
+								<com:TTextBox
+							   		ID="txtPorcentaje4"
+									CssClass="small"
+									MaxLength="6"
+									AutoTrim="True"
+							   		ToolTip="Ingrese el porcentaje de socio"
+									AutoCompleteType="Disabled" />	
+							   	<com:TDataTypeValidator
+									ControlToValidate="txtPorcentaje4"
+									ErrorMessage="Debe ingresar un número válido."
+									DataType="Float"
+									Display="Dynamic"
+									Text="*"
+									ValidationGroup="Register"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<com:TActiveTextBox
+					         		ID="txtIdProveedor5"
+					         		Style="display:none;" />
+								<com:TAutoComplete
+									ID="acpProveedor5"
+									Width="250px"
+									MinChars="4"
+									Frequency="1"
+									OnSuggest="acpProveedor5_OnSuggest"
+									OnSuggestionSelected="acpProveedor5_OnSuggestionSelected"
+									ResultPanel.CssClass="acomplete"
+									Suggestions.DataKeyField="IdProveedor"
+									ToolTip="Ingrese al menos cuatro caracateres para búsqueda por CUIT o Razón Social"
+									ClientSide.OnLoading="Element.show('callback_status')"
+					           		ClientSide.OnComplete="Element.hide('callback_status')" >
+								    <prop:Suggestions.ItemTemplate>
+								    	<li><%# $this->Data['Descripcion'] %></li>
+								    </prop:Suggestions.ItemTemplate>
+								</com:TAutoComplete>
+							</td>
+							<td>
+								<com:TTextBox
+							   		ID="txtPorcentaje5"
+									CssClass="small"
+									MaxLength="6"
+									AutoTrim="True"
+							   		ToolTip="Ingrese el porcentaje de socio"
+									AutoCompleteType="Disabled" />	
+							   	<com:TDataTypeValidator
+									ControlToValidate="txtPorcentaje5"
+									ErrorMessage="Debe ingresar un número válido."
+									DataType="Float"
+									Display="Dynamic"
+									Text="*"
+									ValidationGroup="Register"/>
+							</td>
+						</tr>
+					</tbody>
+		    	</table>
+		    </com:TActivePanel>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

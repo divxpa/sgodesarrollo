@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N
+END
+TDateFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TDateFormat.php
+END
+Translation.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/Translation.php
+END
+TTranslate.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TTranslate.php
+END
+TGlobalization.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TGlobalization.php
+END
+TTranslateParameter.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TTranslateParameter.php
+END
+TGlobalizationAutoDetect.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TGlobalizationAutoDetect.php
+END
+TI18NControl.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TI18NControl.php
+END
+TNumberFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TNumberFormat.php
+END
+TChoiceFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/TChoiceFormat.php
+END

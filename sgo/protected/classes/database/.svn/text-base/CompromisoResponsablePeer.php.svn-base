@@ -1,0 +1,16 @@
+<?php
+class CompromisoResponsablePeer
+{
+	public static function CompromisoResponsableSelect(){
+		$sql = "Select 
+					 compromisoresponsable.IdCompromisoResponsable, 
+					 CONCAT (usuario.ApellidoNombre , ' - ' , organismo.Nombre) as ApellidoNombre
+				From compromisoresponsable
+					Inner Join usuario on compromisoresponsable.IdUsuario = usuario.IdUsuario
+					Inner Join organismo on organismo.IdOrganismo = compromisoresponsable.IdOrganismo
+				Order by
+					usuario.ApellidoNombre";
+		return $sql;
+	}
+}
+?>

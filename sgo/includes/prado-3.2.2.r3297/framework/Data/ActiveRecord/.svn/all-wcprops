@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord
+END
+TActiveRecordManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/TActiveRecordManager.php
+END
+TActiveRecord.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/TActiveRecord.php
+END
+TActiveRecordGateway.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/TActiveRecordGateway.php
+END
+TActiveRecordCriteria.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/TActiveRecordCriteria.php
+END
+TActiveRecordConfig.php
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/TActiveRecordConfig.php
+END

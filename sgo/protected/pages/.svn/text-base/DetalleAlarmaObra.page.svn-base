@@ -1,0 +1,24 @@
+<%@  Title="S.G.O. - Detalle de Alarma" %>
+<com:TContent ID="MainContent">
+	<span class="maintitle">Detalle de Alarmas por Obra</span><br />
+	<span class="maintitle2">Obra: </span>
+	<com:TLabel 
+		ID="lblObra"
+		CssClass="maintitle2" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="false"
+				AllowCustomPaging="false"
+		        AllowSorting="false"
+		        ItemStyle.VerticalAlign="Top">
+		        <com:TBoundColumn DataField="Icono" HeaderText=""/>
+		        <com:TBoundColumn DataField="Alarma" HeaderText="Alarma"/>
+		    </com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

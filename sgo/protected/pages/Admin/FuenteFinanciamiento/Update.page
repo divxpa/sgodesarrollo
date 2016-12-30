@@ -1,0 +1,79 @@
+<%@   Title="S.G.O. - Fuente de Financiamiento" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <a class="maintitle volver" href="?page=Admin.FuenteFinanciamiento.Home">Fuentes de Financiamiento</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Fuente de Financiamiento"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">FUFI</span>
+			<com:TTextBox
+	       		ID="txtCodigo"
+				CssClass="small"
+				MaxLength="4"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el FUFI de la fuente de financiamiento"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtCodigo"
+				ErrorMessage="Debe ingresar un FUFI de la fuente de financiamiento."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TRegularExpressionValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtCodigo"
+			    RegularExpression="\d{4}"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un FUFI válido (0000)." />
+			<com:TCustomValidator
+				ControlToValidate="txtCodigo"
+	  			Text="*"
+		   		ErrorMessage="El FUFI ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvCodigo_OnServerValidate"
+			 	ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label required">Descripción</span>
+			<com:TTextBox
+	       		ID="txtDescripcion"
+				CssClass="largest"
+				MaxLength="255"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la descripción de la fuente de financiamiento"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDescripcion"
+				ErrorMessage="Debe ingresar la descripción de la fuente de financiamiento."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

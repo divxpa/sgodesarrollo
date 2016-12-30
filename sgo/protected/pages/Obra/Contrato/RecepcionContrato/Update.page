@@ -1,0 +1,120 @@
+<%@   Title="S.G.O. - Recepción de Contrato" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <span class="maintitle">Contratos >> </span>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Recepción de Contrato"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Contrato</span>
+			<com:TLabel 
+				ID="lblContrato" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">N.L. de Aprobación</span>
+			<com:TTextBox
+	       		ID="txtNLAprobacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de aprobación de la recepción"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAprobacion"
+				ErrorMessage="Debe ingresar la norma legal de aprobación de la recepción."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Fecha</span>
+			<com:TDatePicker
+				ID="dtpFecha"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpFecha"
+				ErrorMessage="Debe ingresar fecha de recepción."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFecha"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">Tipo</span>
+			<com:TDropDownList 
+				ID="ddlTipo">
+				<com:TListItem Value="0" Text="Provisoria" Selected="true"/>
+				<com:TListItem Value="1" Text="Definitiva" />
+			</com:TDropDownList>
+			<br />
+			<span class="label required">Parcial/Total</span>
+			<com:TActiveDropDownList 
+				ID="ddlParcialTotal"
+				ClientSide.OnLoading="Element.show('callback_status')"
+           		ClientSide.OnComplete="Element.hide('callback_status')"
+           		OnSelectedIndexChanged="ddlParcialTotal_OnSelectedIndexChanged">
+				<com:TListItem Value="0" Text="Parcial" Selected="true"/>
+				<com:TListItem Value="1" Text="Total" />
+			</com:TActiveDropDownList>
+			<br />
+			<span class="label required">% Recepción</span>
+	       	<com:TActiveTextBox
+		   		ID="txtPorcentajeRecepcion"
+				CssClass="small"
+				MaxLength="6"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el % de recepción de contrato"
+				AutoCompleteType="Disabled" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtPorcentajeRecepcion"
+				ErrorMessage="Debe ingresar el % de recepción de contrato."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtPorcentajeRecepcion"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

@@ -1,0 +1,56 @@
+<%@   Title="S.G.O. - Compromisos" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+ 			<span class="maintitle">Compromisos >> </span>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Revision del Compromiso"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Compromiso Revision</span>
+			<com:TTextBox
+	       		ID="txtDenominacion"
+				CssClass="largest"
+				TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				MaxLength="500"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la revisión del compromiso."/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDenominacion"
+				ErrorMessage="Debe ingresar una revisión del compromiso."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />		
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+	
+</com:TContent>

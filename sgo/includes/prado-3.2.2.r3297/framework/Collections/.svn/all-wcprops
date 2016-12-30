@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections
+END
+TStack.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TStack.php
+END
+TDummyDataSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TDummyDataSource.php
+END
+TListItemCollection.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TListItemCollection.php
+END
+TList.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TList.php
+END
+TPagedDataSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TPagedDataSource.php
+END
+TPagedList.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TPagedList.php
+END
+TMap.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TMap.php
+END
+TPriorityList.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TPriorityList.php
+END
+TAttributeCollection.php
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TAttributeCollection.php
+END
+TPriorityMap.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TPriorityMap.php
+END
+TQueue.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Collections/TQueue.php
+END

@@ -1,0 +1,65 @@
+<%@  Title="S.G.O. - Tipos de Obra" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Admin.TipoObra.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Tipos de Obra"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Búsqueda:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnVerTodos"
+				    Text="Ver todos"
+				    OnClick="btnVerTodos_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="Descripcion" HeaderText="Descripción" />
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center" ItemStyle.Width="50px">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+				            NavigateUrl="?page=Admin.TipoObra.Update&id=<%# $this->Parent->Data['IdTipoObra']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

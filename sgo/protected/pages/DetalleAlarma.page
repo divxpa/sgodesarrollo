@@ -1,0 +1,32 @@
+<%@  Title="S.G.O. - Detalle de Alarma" %>
+<com:TContent ID="MainContent">
+	<div style="float: right; ">
+		<com:TActiveImageButton
+			ID="btnPdf"
+			Text="Exportar a PDF"
+			ImageUrl="themes/serviciospublicos/images/pdf.png"
+			OnClick="btnPdf_OnClick"
+			ClientSide.OnLoading="Element.show('callback_status')"
+			ClientSide.OnComplete="Element.hide('callback_status')"
+			Style="width: 32px; height: 32px;" />	
+	</div>
+	<span class="maintitle">Detalle de Alarma</span><br />
+	<span class="maintitle2">Alarma: </span>
+	<com:TActiveLabel 
+		ID="lblAlarma"
+		CssClass="maintitle2" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="true"
+	            AllowPaging="false"
+				AllowCustomPaging="false"
+		        AllowSorting="false"
+		        ItemStyle.VerticalAlign="Top" />
+		</div>
+	</div>
+	<com:TActiveButton ID="btnRefresh" OnClick="btnRefresh_OnClick" Style="display: none;" />
+</com:TContent>

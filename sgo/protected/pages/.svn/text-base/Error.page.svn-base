@@ -1,0 +1,6 @@
+<%@ Title="Sigrede - Error" %>
+<com:TContent ID="MainContent">
+<div style="text-align:center;">
+	<img src="themes/serviciospublicos/images/Error.jpg">
+</div>
+</com:TContent>

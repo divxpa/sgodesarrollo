@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements
+END
+TPreparedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TPreparedStatement.php
+END
+TStaticSql.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TStaticSql.php
+END
+TMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TMappedStatement.php
+END
+TSelectMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TSelectMappedStatement.php
+END
+TDeleteMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TDeleteMappedStatement.php
+END
+TSimpleDynamicSql.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TSimpleDynamicSql.php
+END
+TUpdateMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TUpdateMappedStatement.php
+END
+TPreparedStatementFactory.php
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TPreparedStatementFactory.php
+END
+IMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/IMappedStatement.php
+END
+TInsertMappedStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TInsertMappedStatement.php
+END
+TCachingStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TCachingStatement.php
+END
+TPreparedCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/Statements/TPreparedCommand.php
+END

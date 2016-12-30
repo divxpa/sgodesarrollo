@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/DataGateway
+END
+TTableGateway.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/DataGateway/TTableGateway.php
+END
+TDataGatewayCommand.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/DataGateway/TDataGatewayCommand.php
+END
+TSqlCriteria.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/DataGateway/TSqlCriteria.php
+END

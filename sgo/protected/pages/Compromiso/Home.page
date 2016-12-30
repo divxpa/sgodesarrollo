@@ -1,0 +1,104 @@
+<%@  Title="S.G.O. - Compromisos" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			CssClass="imgbtn2-nuevo"
+			NavigateUrl="?page=Compromiso.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Compromiso"
+        CssClass="maintitle" />
+        <br/>
+	<com:TActiveLabel
+        ID="lblActualizacion"
+        Text="Ultima Actualización: 10/10/2016"
+        CssClass="medium" />
+        <br>
+    <com:TActiveLabel
+        ID="lblUltimaRevision"
+        Text="Ultima Revisión: 10/10/2016"
+        CssClass="medium" />        
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Localidad: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlLocalidad"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="idLocalidad" />
+		       	<span>Organismo: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlOrganismo"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Tag"
+		       		DatavalueField="IdCompromisoOrganismo" />
+		       	<span>Responsable: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlResponsable"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="ApellidoNombre"
+		       		DatavalueField="IdCompromisoResponsable" />
+		       	<br />		       	
+				<span>Búsqueda por denominacion del Compromiso:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnVerTodos"
+				    Text="Ver todos"
+				    OnClick="btnVerTodos_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Right" ItemStyle.Width="50px" />
+				<com:TBoundColumn DataField="organismo" HeaderText="Organismo" ItemStyle.HorizontalAlign="Right" ItemStyle.Width="50px" />
+				<com:TBoundColumn DataField="responsable" HeaderText="Responsable" ItemStyle.HorizontalAlign="Left" ItemStyle.Width="150px" />
+				<com:TBoundColumn DataField="Nombre" HeaderText="Localidad" ItemStyle.HorizontalAlign="Left" ItemStyle.Width="150px" />
+				<com:TBoundColumn DataField="compromiso" HeaderText="Compromiso" />				
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center" ItemStyle.Width="50px">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+							NavigateUrl="?page=Compromiso.Update&id=<%# $this->Parent->Data['IdCompromiso']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

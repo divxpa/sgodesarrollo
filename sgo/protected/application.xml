@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="serviciospublicos" mode="Debug">
+  
+  <paths>
+    <using namespace="System.Web.*" />
+    <using namespace="System.Web.UI.*" />
+    <using namespace="System.Web.UI.WebControls.*" />
+    <using namespace="System.Web.UI.ActiveControls.*" />
+    <using namespace="Application.classes.*" />
+    <using namespace="Application.classes.database.*" />
+    <using namespace="Application.classes.database.activerecord.*" />
+    <using namespace="Application.classes.mpdf54.*" />
+    <using namespace="Application.classes.excelxml.*" />
+  </paths>
+
+  <!-- configurations for modules -->
+  <modules>
+    <module id="database" class="System.Data.ActiveRecord.TActiveRecordConfig" EnableCache="false">
+      <database ConnectionString="mysql:host=localhost;dbname=ssp" Username="root" Password="root" Charset="UTF8" Persistent="True"/>
+    </module>
+    <!--<module id="session" class="THttpSession" SessionName="ServiciosPublicos" CookieMode="Allow" UseCustomStorage="false" AutoStart="true" GCProbability="1" UseTransparentSessionID="true" TimeOut="28800" />-->
+  </modules>
+
+  <!-- configuration for available services -->
+  <services>
+    <service id="page" class="TPageService" DefaultPage="Home">
+      <pages MasterClass="Application.layouts.MainLayout" Theme="serviciospublicos" />
+    </service>
+  </services>
+
+  <!-- application parameters -->
+  <parameters>
+    <parameter id="alarmaEnabled" value="1" />
+  </parameters>
+  
+</application>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/OENEJE/!svn/ver/137/trunk/3_construction/Web/protected/classes/phpgmailer
+END
+phpmailer.lang-en.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/OENEJE/!svn/ver/137/trunk/3_construction/Web/protected/classes/phpgmailer/phpmailer.lang-en.php
+END
+class.smtp.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/OENEJE/!svn/ver/137/trunk/3_construction/Web/protected/classes/phpgmailer/class.smtp.php
+END
+PHPGMailer.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/OENEJE/!svn/ver/137/trunk/3_construction/Web/protected/classes/phpgmailer/PHPGMailer.php
+END

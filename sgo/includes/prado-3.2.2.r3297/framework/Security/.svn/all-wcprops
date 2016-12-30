@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security
+END
+TAuthorizationRule.php
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TAuthorizationRule.php
+END
+TUserManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TUserManager.php
+END
+TAuthManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TAuthManager.php
+END
+IUserManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/IUserManager.php
+END
+TUser.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TUser.php
+END
+TDbUserManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TDbUserManager.php
+END
+TSecurityManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Security/TSecurityManager.php
+END

@@ -1,0 +1,64 @@
+<h1 style="text-align: left; width: 700px;">Aniversario de <?php echo $data["Localidad"]; ?></h1>
+<span>Localidad: <?php echo $data["Localidad"]; ?></span><br />
+<span>Aniversario: <?php echo $data["Aniversario"]; ?></span><br />
+<span>Categor&iacute;a: <?php echo $data["Categoria"]; ?></span><br />
+<span>Autoridades: <?php echo $data["Autoridades"]; ?></span><br />
+<span>Habitantes: <?php echo $data["Habitantes"]; ?></span><br /><br />
+<table align="center">
+	<tr>
+		<td align="center" width="250px">
+			<img height="200px" src="<?php echo $data["FotoEscudo"]; ?>" />
+		</td>
+		<td align="center" width="250px">
+			<img height="200px" src="<?php echo $data["FotoLocalidad"]; ?>" />
+		</td>
+		<td align="center" width="250px">
+			<img height="200px" src="<?php echo $data["FotoAutoridad"]; ?>" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			<span style="font-size: 12px;">Escudo de la localidad</span>
+		</td>
+		<td align="center">
+			<span style="font-size: 12px;">Fotograf&iacute;a de la localidad</span>
+		</td>
+		<td align="center">
+			<span style="font-size: 12px;"><?php echo $data["Autoridades"]; ?></span>
+		</td>
+	</tr>
+</table>
+<br /><br />
+<span>Cantidad de Obras: <?php echo $data["CantidadObras"]; ?></span><br />
+<span>Monto Total: <?php echo $data["MontoTotal"]; ?></span><br />
+<br />
+
+<table>
+	<thead>
+		<tr>
+                        <?php if(in_array(1,$data["Columns"])) { ?><th align="center" valign="top" width="150px">Organismo</th><?php } ?>
+			<?php if(in_array(2,$data["Columns"])) { ?><th align="center" valign="top" width="450px">Obra</th><?php } ?>
+                        <?php if(in_array(3,$data["Columns"])) { ?><th align="center" valign="top" width="120px">Monto</th><?php } ?>
+                        <?php if(in_array(4,$data["Columns"])) { ?><th align="center" valign="top" width="100">Nivel de Ejecución</th><?php } ?>
+                        <?php if(in_array(5,$data["Columns"])) { ?><th align="center" valign="top" width="120">Fecha de Inauguración</th><?php } ?>
+                        <?php if(in_array(6,$data["Columns"])) { ?><th align="center" valign="top" width="100">Estado</th><?php } ?>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+	foreach($data["Obras"] as $d){
+?>
+		<tr>
+                        <?php if(in_array(1,$data["Columns"])) { ?><td align="left" valign="top"><?php echo $d["Organismo"]; ?></td><?php } ?>
+			<?php if(in_array(2,$data["Columns"])) { ?><td align="left" valign="top"><?php echo $d["Obra"]; ?></td><?php } ?>
+                        <?php if(in_array(3,$data["Columns"])) { ?><td align="right" valign="top"><?php echo ($d["Monto"]!='' ? number_format($d["Monto"], 2, ",", ".") : ''); ?></td><?php } ?>
+			<?php if(in_array(4,$data["Columns"])) { ?><td align="right" valign="top"><?php echo ($d["PorcentajeAvance"]!='' ? number_format(floatval($d["PorcentajeAvance"]), 2, ",", ".") : ''); ?></td><?php } ?>
+                        <?php if(in_array(5,$data["Columns"])) { ?><td align="center" valign="top"><?php echo $d["FechaInauguracion"]; ?></td><?php } ?>
+                	<?php if(in_array(6,$data["Columns"])) { ?><td align="left" valign="top"><?php echo $d["Estado"]; ?></td><?php } ?>
+
+		</tr>
+<?php
+	}
+?>
+	</tbody>
+</table>

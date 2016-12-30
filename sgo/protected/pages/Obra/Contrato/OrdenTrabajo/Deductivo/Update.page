@@ -1,0 +1,108 @@
+<%@   Title="S.G.O. - Deductivo de Orden de Trabajo" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <span class="maintitle">Orden de Trabajo >> </span>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Deductivo de Orden de Trabajo"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Contrato</span>
+			<com:TLabel 
+				ID="lblContrato" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Órden de Trabajo</span>
+			<com:TLabel 
+				ID="lblOrdenTrabajo" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Fecha</span>
+			<com:TDatePicker
+				ID="dtpFecha"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpFecha"
+				ErrorMessage="Debe ingresar la fecha de deductivo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFecha"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">N.L. de Aprobación</span>
+			<com:TTextBox
+	       		ID="txtNLAprobacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de aprobación del deductivo"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAprobacion"
+				ErrorMessage="Debe ingresar la norma legal de aprobación del deductivo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Importe</span>
+	       	<com:TTextBox
+		   		ID="txtImporte"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe del deductivo"
+				AutoCompleteType="Disabled" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtImporte"
+				ErrorMessage="Debe ingresar el importe del deductivo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtImporte"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

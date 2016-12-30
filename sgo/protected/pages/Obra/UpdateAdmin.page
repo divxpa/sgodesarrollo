@@ -1,0 +1,505 @@
+<%@   Title="S.G.O. - Obra" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <a class="maintitle volver" href="?page=Obra.HomeAdmin">Obras</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Obra por Administracion"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick"
+				Attributes.onclick="return confirm('¿Desea salir? Perderá los cambios');" />
+		</div>
+	</div>
+     <div>
+		<fieldset>
+			<com:TTextBox
+	       		ID="txtCodigo"
+				CssClass="small"
+				MaxLength="4"
+	            AutoTrim="True"
+	            Display= "None"
+	       		ToolTip="Ingrese el código de obra"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtCodigo"
+				ErrorMessage="Debe ingresar un código de obra."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TRegularExpressionValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtCodigo"
+			    RegularExpression="\d{4}"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un código válido (0000)." />
+			<com:TCustomValidator
+				ControlToValidate="txtCodigo"
+	  			Text="*"
+		   		ErrorMessage="El código de obra ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvCodigo_OnServerValidate"
+			 	ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label required">Denominación</span>
+			<com:TTextBox
+	       		ID="txtDenominacion"
+				CssClass="largest"
+				MaxLength="1000"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la denominación de la obra"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDenominacion"
+				ErrorMessage="Debe ingresar una denominación de obra."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+	       	<span class="label">Expediente</span>
+			<com:TTextBox
+	       		ID="txtExpediente"
+				CssClass="medium"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el expediente de obra"/>
+	       	<com:TRegularExpressionValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtExpediente"
+			    RegularExpression="^[0-9]{4}-[0-9]{6}/[0-9]{4}(-[0-9]{4}/[0-9]{4})?$"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un expediente válido (0000-000000/0000{-0000/0000})." />
+	       	<br />
+	       	<span class="label">Crédito Presup. Asignado</span>
+	       	<com:TTextBox
+		   		ID="txtCreditoPresup"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el crédito presupuestario asignado"
+				AutoCompleteType="Disabled" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtCreditoPresup"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TActivePanel 
+				ID="pnlModificacionObra"
+				Visible="false">
+				<br />
+				<span class="label">Refuerzos de partida presupuestaria</span>
+				<com:THyperLink
+					ID="btnAgregarRefuerzo"
+		            NavigateUrl="?page=Obra.RefuerzoPartida.Update"
+			        ToolTip="Haga click aquí para agregar un nuevo registro">
+		            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+			    </com:THyperLink>
+				<com:TActiveDataGrid
+				    ID="dgRefuerzosPartida"
+					CssClass="TableForm"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    AutoGenerateColumns="false"
+		            AllowPaging="false"
+					AllowCustomPaging="false"
+			        AllowSorting="false"
+			        Width="300px">
+					<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+					<com:TBoundColumn DataField="NormaLegal" HeaderText="NL Aprob." />
+					<com:TBoundColumn DataField="Importe" HeaderText="Importe" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+					<com:TTemplateColumn ID="tcEditarRefuerzoPartida" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+			            <prop:ItemTemplate>
+					       	<com:TActiveHyperLink
+					            ID="hlEditar"
+					            ToolTip="Haga click aquí para editar"
+					            NavigateUrl="?page=Obra.RefuerzoPartida.Update&id=<%# $this->Parent->Data['IdRefuerzoPartida']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+					            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+					    	</com:TActiveHyperLink>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+			  	</com:TActiveDataGrid>
+			  	<com:TLabel ID="lblRefuerzosPartida" Text="No existen refuerzos de partida presupuestaria" />
+			</com:TActivePanel>
+			<br />
+	       	<span class="label required">Fuentes de Financiamiento</span>
+			<com:TDropDownList
+	       		ID="ddlFufi1"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdFuenteFinanciamiento" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlFufi1"
+				ErrorMessage="Debe seleccionar una fuente de financiamiento."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label"></span>
+			<com:TDropDownList
+	       		ID="ddlFufi2"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdFuenteFinanciamiento" />
+	       	<br />
+	       	<span class="label"></span>
+	       	<com:TDropDownList
+	       		ID="ddlFufi3"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdFuenteFinanciamiento" />
+			<br />
+	       	<span class="label">Presupuesto Oficial</span>
+	       	<com:TTextBox
+		   		ID="txtPresupuestoOficial"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el presupuesto oficial"
+				AutoCompleteType="Disabled" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtPresupuestoOficial"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Fecha Presup. Oficial</span>
+			<com:TDatePicker
+				ID="dtpFechaPresupOficial"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaPresupOficial"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label required">Localidades</span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad1"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlLocalidad1"
+				ErrorMessage="Debe seleccionar una localidad de obra."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>	       	
+			<br />			
+			<span class="label">Detalle de la Localidad</span>
+			<com:TTextBox
+		   		ID="txtDetalleLocalidad"
+		   		TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				CssClass="small"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el detalle de la localidad"
+		   		MaxLength="10"
+		   		Attributes.onkeypress="return imposeMaxLength(event, this, 500);" />
+		   	<com:TCustomValidator
+				ControlToValidate="txtDetalleLocalidad"
+	  			Text="*"
+		   		ErrorMessage="El detalle de la localidad no puede superar los 500 caracteres."
+				Display="Dynamic"
+			  	OnServerValidate="cvMemoriaDescriptiva_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Agregar mas Localidades</span>
+	       	<com:TActiveImageButton
+				ID="btnMasLocalidades"
+				ToolTip="Agregar más localidades"
+				ImageUrl="themes/serviciospublicos/images/btnAgregar2.png"
+				OnClick="btnMasLocalidades_OnClick" />
+			<br />
+	       	<com:TActivePanel 
+	       		ID="pnlMasLocalidades"
+	       		Display="None">
+	       		<br />
+	       	<span class="label"></span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad2"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+	       	<span class="label"></span>
+	       	<com:TDropDownList
+	       		ID="ddlLocalidad3"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+	       	<span class="label"></span>
+	       	<com:TDropDownList
+	       		ID="ddlLocalidad4"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       		<br />
+	       	<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad5"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       	<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad6"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad7"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad8"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad9"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad10"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad11"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad12"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad13"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad14"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad15"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad16"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad17"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad18"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad19"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<br />
+	       		<span class="label"></span>
+		       	<com:TDropDownList
+		       		ID="ddlLocalidad20"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+	       	</com:TActivePanel>
+			<br />
+			<span class="label">Latitud/Longitud</span>
+			<com:TTextBox
+	       		ID="txtLatitud"
+				CssClass="small"
+				MaxLength="20"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese coordenada de latitud de obra"/>
+	       	<span>/</span>
+	       	<com:TTextBox
+	       		ID="txtLongitud"
+				CssClass="small"
+				MaxLength="20"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese coordenada de longitud de obra"/>
+	       	<br />
+			<span class="label">Tipo de Obra</span>
+			<com:TDropDownList
+	       		ID="ddlTipo"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdTipoObra" />
+	       	<br />
+	       	<span class="label">Cant. de Beneficiarios</span>
+			<com:TTextBox
+	       		ID="txtBeneficiarios"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la cantidad de beneficiarios de la obra"/>
+	       	<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtBeneficiarios"
+			    DataType="Integer"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un número válido." />
+	       	<br />
+	       	<span class="label required">Estado</span>
+			<com:TDropDownList
+	       		ID="ddlEstado"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdEstadoObra" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlEstado"
+				ErrorMessage="Debe seleccionar un estado de obra."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Detalle de Estado</span>
+			<com:TTextBox
+	       		ID="txtDetalleEstado"
+				CssClass="largest"
+				MaxLength="1000"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese un texto que detalle el estado de la obra"/>
+			<br />
+			<span class="label">Memoria Descriptiva</span>
+			<com:TTextBox
+		   		ID="txtMemoriaDescriptiva"
+		   		TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				CssClass="small"
+				AutoTrim="True"
+		   		ToolTip="Ingrese la memoria descriptiva de la obra"
+		   		MaxLength="10"
+		   		Attributes.onkeypress="return imposeMaxLength(event, this, 500);" />
+		   	<com:TCustomValidator
+				ControlToValidate="txtMemoriaDescriptiva"
+	  			Text="*"
+		   		ErrorMessage="La longitud de la memoria descriptiva no puede superar los 500 caracteres."
+				Display="Dynamic"
+			  	OnServerValidate="cvMemoriaDescriptiva_OnServerValidate"
+			 	ValidationGroup="Register"/>
+		</fieldset>
+	</div>
+</com:TContent>

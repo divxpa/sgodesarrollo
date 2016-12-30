@@ -1,0 +1,190 @@
+<%@   Title="S.G.O. - Ordenes de Trabajo" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <span class="maintitle">Contratos >> </span>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Orden de Trabajo"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Contrato</span>
+			<com:TLabel 
+				ID="lblContrato" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Número</span>
+			<com:TTextBox
+	       		ID="txtNumero"
+				CssClass="small"
+				MaxLength="3"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el número de la órden de trabajo"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNumero"
+				ErrorMessage="Debe ingresar número de la órden de trabajo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+				ControlToValidate="txtNumero"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Integer"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ControlToValidate="txtNumero"
+	  			Text="*"
+		   		ErrorMessage="El número de órden de trabajo ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvNumero_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Localidades</span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad1"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlLocalidad1"
+				ErrorMessage="Debe seleccionar una localidad de la órden de trabajo."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label"></span>
+			<com:TDropDownList
+	       		ID="ddlLocalidad2"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+	       	<span class="label"></span>
+	       	<com:TDropDownList
+	       		ID="ddlLocalidad3"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+	       	<span class="label"></span>
+	       	<com:TDropDownList
+	       		ID="ddlLocalidad4"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdLocalidad" />
+	       	<br />
+			<span class="label required">N.L. de Autorización</span>
+			<com:TTextBox
+	       		ID="txtNLAutorizacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de autorización de la órden de trabajo"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAutorizacion"
+				ErrorMessage="Debe ingresar la norma legal de autorización de la órden de trabajo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Importe</span>
+	       	<com:TTextBox
+		   		ID="txtImporte"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de la órden de trabajo"
+				AutoCompleteType="Disabled" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtImporte"
+				ErrorMessage="Debe ingresar el importe de la órden de trabajo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtImporte"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TActivePanel 
+				ID="pnlModificacionOrdenTrabajo"
+				Visible="false">
+				<br /><br />
+				<span class="maintitle2">Deductivos</span>
+				<com:THyperLink
+					ID="btnAgregarDeductivo"
+		            NavigateUrl="?page=Obra.Contrato.OrdenTrabajo.Deductivo.Update"
+			        ToolTip="Haga click aquí para agregar un nuevo registro">
+		            <img src="themes/serviciospublicos/images/btn2nuevo.png" width="20px" height="20px" border="0"/>
+			    </com:THyperLink>
+				<com:TActiveDataGrid
+				    ID="dgDeductivos"
+					CssClass="TableForm"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    AutoGenerateColumns="false"
+		            AllowPaging="false"
+					AllowCustomPaging="false"
+			        AllowSorting="false"
+			        Width="300px">
+					<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+					<com:TBoundColumn DataField="NormaLegalAprobacion" HeaderText="NL Aprob." />
+					<com:TBoundColumn DataField="Importe" HeaderText="Importe" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+					<com:TTemplateColumn ID="tcEditarDeductivo" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+			            <prop:ItemTemplate>
+					       	<com:TActiveHyperLink
+					            ID="hlEditar"
+					            ToolTip="Haga click aquí para editar"
+					            NavigateUrl="?page=Obra.Contrato.OrdenTrabajo.Deductivo.Update&id=<%# $this->Parent->Data['IdOrdenTrabajoDeductivo']%>&idot=<%# $this->Parent->Data['IdOrdenTrabajo']%>&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+					            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+					    	</com:TActiveHyperLink>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+			  	</com:TActiveDataGrid>
+			  	<com:TLabel ID="lblDeductivos" Text="No existen deductivos para la órden de trabajo" />
+			</com:TActivePanel>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

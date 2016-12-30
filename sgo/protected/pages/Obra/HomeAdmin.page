@@ -1,0 +1,177 @@
+<%@  Title="S.G.O. - Obras" %>
+<com:TContent ID="MainContent">
+<script language='javascript'>
+	(function($) {
+		$(document).ready(function() {
+		    $('#container').scroll(function() {
+		    	var s = $('#sticker');
+		        var windowposTop = $('#container').scrollTop();
+		        var windowposLeft = $('#container').scrollLeft();
+		        var contentPadding = parseInt($('#content').css('padding-left'));
+
+		        if (windowposTop >= 214) {
+		     		s.css('top', -5);
+		     		s.css('left', contentPadding - windowposLeft);
+		     		s.css('position', 'fixed');
+		        } else {
+		            s.css('top', 0);
+		            s.css('left', 0);
+		            s.css('position', 'relative');
+		        }
+
+		    });
+		    
+	});} ) ( jQuery );
+</script>
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			ID="btnAgregar"
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Obra.UpdateAdmin"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Obras"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<com:TActiveLabel Text="Localidad" ID="lblLocalidad"/>				
+				<com:TActiveDropDownList
+		       		ID="ddlLocalidad"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdLocalidad" />
+		       	<com:TActiveLabel Text="FUFI:" ID="lblFufi"/>
+				<com:TActiveDropDownList
+		       		ID="ddlFufi"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Descripcion"
+		       		DatavalueField="IdFuenteFinanciamiento" />
+		       	<br />
+		       	<span>Estado: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlEstado"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Descripcion"
+		       		DatavalueField="IdEstadoObra" />
+				<span></span>
+				<span>Código:</span>
+				<com:TActiveTextBox
+				    ID="txtcodigoOrganismo"
+				    AutoTrim="true"
+				    CssClass="smallest"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<span>-</span>
+				<com:TActiveTextBox
+				    ID="txtcodigoObra"
+				    AutoTrim="true"
+				    CssClass="small"
+				    ToolTip="Ingrese criterio de búsqueda" />				
+				<span> Denominacion o Expediente:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnVerTodos"
+				    Text="Ver todos"
+				    OnClick="btnVerTodos_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<div style='width: 1179px;'>
+				<com:TActiveDataGrid
+				    ID="dgDatos"
+				    Style="font-size: 9px;"
+					CssClass="TableForm"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    ItemStyle.CustomStyle="text-wrap: unrestricted";
+				    AlternatingItemStyle.CustomStyle="text-wrap: unrestricted";
+				    AutoGenerateColumns="false"
+		            AllowPaging="true"
+					AllowCustomPaging="false"
+					PageSize="15"
+			        PagerStyle.Mode="Numeric"
+			        PagerStyle.HorizontalAlign="Right"
+					PagerStyle.CssClass="pager"
+			        AllowSorting="false"
+			        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+			        OnPagerCreated="dgDatos_OnPagerCreated"
+			        OnItemDataBound="dgDatos_OnItemDataBound"
+			        ShowHeader="true">
+				        <com:TBoundColumn ID="bcAlarma" DataField="IdObra" HeaderText="" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 24px; min-width: 24px; max-width: 24px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Codigo" HeaderText="Código" ItemStyle.HorizontalAlign="Right" ItemStyle.CustomStyle="width: 39px; min-width: 39px; max-width: 39px; word-wrap: break-word; text-wrap: unrestricted"/>				
+						<com:TBoundColumn ID="bcDenominacion" DataField="Denominacion" HeaderText="Denominacion" ItemStyle.CustomStyle="width: 250px; min-width: 250px; max-width: 250px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn ID="bcLocalidad" DataField="Localidad" HeaderText="Localidad" ItemStyle.CustomStyle="width: 67px; min-width: 67px; max-width: 67px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Expediente" HeaderText="Nro. Expediente" ItemStyle.CustomStyle="width: 70px; min-width: 70px; max-width: 90px; word-wrap: break-word; text-wrap: unrestricted"/>
+
+						<com:TBoundColumn DataField="PorcentajeAvance" HeaderText="% Certif." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right" ItemStyle.CustomStyle="width: 30px; min-width: 30px; max-width: 30px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="MontoAvance" HeaderText="$ Certif." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right" ItemStyle.CustomStyle="width: 69px; min-width: 69px; max-width: 69px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn ID="bcSaldoPresup" DataField="SaldoCreditoPresup" HeaderText="Saldo Cred. Presup." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right" ItemStyle.CustomStyle="width: 72px; min-width: 72px; max-width: 72px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="UltimoCertificado" HeaderText="Últ. Cert." ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 39px; min-width: 39px; max-width: 39px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Estado" HeaderText="Estado" ItemStyle.CustomStyle="width: 66px; min-width: 66px; max-width: 58px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TTemplateColumn ID="tcEditar" HeaderText="Editar Obra" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 16px; min-width: 16px; max-width: 16px; word-wrap: break-word; text-wrap: unrestricted">
+				            <prop:ItemTemplate>
+						       	<com:TActiveHyperLink
+						            ID="hlEditar"
+						            ToolTip="Haga click aquí para editar"
+						            NavigateUrl="?page=Obra.UpdateAdmin&id=<%# $this->Parent->Data['IdObra']%>"
+						            Visible="<%# $this->Parent->Data['EditarVisible']%>">
+						            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+						    	</com:TActiveHyperLink>
+				            </prop:ItemTemplate>
+		             	</com:TTemplateColumn>
+						<com:TTemplateColumn ID="tcContratos" HeaderText="Editar Convenio" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 20px; min-width: 20px; max-width: 20px; word-wrap: break-word; text-wrap: unrestricted">
+				            <prop:ItemTemplate>
+						       	<com:TActiveHyperLink
+						            ID="hlContratos"
+						            ToolTip="Haga click aquí para ingresar a los contratos de la obra"
+						            NavigateUrl="?page=Obra.Contrato.UpdateAdmin&id=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+						            <img src="themes/serviciospublicos/images/document.png" border="0"/>
+						    	</com:TActiveHyperLink>
+				            </prop:ItemTemplate>
+		             	</com:TTemplateColumn>
+		             	<com:TTemplateColumn ID="tcItem" HeaderText="Editar Items Contrato " ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 20px; min-width: 20px; max-width: 20px; word-wrap: break-word; text-wrap: unrestricted">
+				            <prop:ItemTemplate>
+						       	<com:TActiveHyperLink
+						            ID="hlItems"
+						            ToolTip="Haga click aquí para ingresar a los contratos de la obra"
+						            NavigateUrl="?page=Obra.Contrato.Item.Update&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+						            <img src="themes/serviciospublicos/images/document.png" border="0"/>
+						    	</com:TActiveHyperLink>
+				            </prop:ItemTemplate>
+		             	</com:TTemplateColumn>
+		             	<com:TTemplateColumn ID="tcCertificacion" HeaderText="Certificacion" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 20px; min-width: 20px; max-width: 20px; word-wrap: break-word; text-wrap: unrestricted">
+				            <prop:ItemTemplate>
+						       	<com:TActiveHyperLink
+						            ID="hlCertificacion"
+						            ToolTip="Haga click aquí para ingresar a los contratos de la obra"
+						            NavigateUrl="?page=Obra.Contrato.Certificacion.HomeAdmin&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+						            <img src="themes/serviciospublicos/images/document.png" border="0"/>
+						    	</com:TActiveHyperLink>
+				            </prop:ItemTemplate>
+		             	</com:TTemplateColumn>
+
+
+				</com:TActiveDataGrid>
+			</div>
+		</div>
+	</div>
+</com:TContent>

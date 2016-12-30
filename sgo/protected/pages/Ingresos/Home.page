@@ -1,0 +1,59 @@
+<%@  Title="S.G.O. - Ingresos" %>
+<com:TContent ID="MainContent">
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Ingresos"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Organismo: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlOrganismo"
+		       		ToolTip="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdOrganismo" />
+		       	<span>Orden: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlOrden"
+		       		ToolTip="Seleccione">
+		       		<com:TListItem Value="0" Text="Último ingreso" Selected="True" />
+		       		<com:TListItem Value="1" Text="Apellido y Nombre" />
+		       		<com:TListItem Value="2" Text="Organismo" />
+		       	</com:TActiveDropDownList>
+		       	<com:TActiveDropDownList
+		       		ID="ddlTipoOrden"
+		       		ToolTip="Seleccione">
+		       		<com:TListItem Value="0" Text="Ascendente" />
+		       		<com:TListItem Value="1" Text="Descendente" Selected="True" />
+		       	</com:TActiveDropDownList>
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="30"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="Organismo" HeaderText="Organismo"/>
+				<com:TBoundColumn DataField="Usuario" HeaderText="Usuario"/>
+				<com:TBoundColumn DataField="Rol" HeaderText="Rol"/>
+				<com:TBoundColumn DataField="UltimoLogin" HeaderText="Últ. Login" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="UltimoLogout" HeaderText="Últ. Logout" ItemStyle.HorizontalAlign="Center"/>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

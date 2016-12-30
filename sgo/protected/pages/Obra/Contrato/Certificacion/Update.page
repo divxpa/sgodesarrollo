@@ -1,0 +1,400 @@
+<%@   Title="S.G.O. - Certificación" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<com:THyperLink 
+				ID="hlkVolver"
+				NavigateUrl="?page=Obra.Contrato.Certificacion.Home" 
+				Text="Certificaciones de Contrato"
+				CssClass="maintitle volver" />
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Certificación"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Contrato</span>
+			<com:TLabel 
+				ID="lblContrato" 
+				CssClass="labeldata"/>
+			<br />
+			<com:TPanel ID="pnlOrdenTrabajo" Display="None">
+	       		<span class="label">Orden de Trabajo</span>
+				<com:TActiveDropDownList
+		       		ID="ddlOrdenTrabajo"
+		       		ToolTip="Seleccione"
+		       		DataTextField="Numero"
+	       			DatavalueField="IdOrdenTrabajo"
+	       			PromptValue="0"
+	       			PromptText="Seleccione"
+		       		OnSelectedIndexChanged="ddlTipoCertificado_OnSelectedIndexChanged"
+		       		ClientSide.OnLoading="Element.show('callback_status')"
+					ClientSide.OnComplete="Element.hide('callback_status')" />
+	       	</com:TPanel>
+			<span class="label required">Tipo de Certificado</span>
+			<com:TActiveDropDownList
+	       		ID="ddlTipoCertificado"
+	       		ToolTip="Seleccione"
+	       		OnSelectedIndexChanged="ddlTipoCertificado_OnSelectedIndexChanged"
+	       		ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')">
+	       		<com:TListItem Value="0" Text="Obra" Selected="true"/>
+	       		<com:TListItem Value="1" Text="Anticipo" />
+	       		<com:TListItem Value="2" Text="Redeterminación" />
+	       		<com:TListItem Value="3" Text="Adicional" />
+	       	</com:TActiveDropDownList>
+	       	<br />
+	       	<span class="label">Nro. Expte.</span>
+	       	<com:TLabel ID="lblExpediente" CssClass="labeldata"/>
+	       	<com:TTextBox
+	       		ID="txtAlcance"
+				CssClass="medium"
+				MaxLength="20"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el número de alcance de expediente"/>
+	       	<br />
+			<span class="label">Nro. Certificado</span>
+			<com:TActiveTextBox
+	       		ID="txtNumero"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el número de certificado"/>
+			<com:TDataTypeValidator
+				ControlToValidate="txtNumero"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Integer"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+	       	<span class="label required">Periodo</span>
+			<com:TActiveDatePicker
+				ID="dtpPeriodo"
+				DateFormat="MM/yyyy"
+				Culture="es"
+				InputMode="DropDownList"
+				FromYear="2000" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpPeriodo"
+				ErrorMessage="Debe ingresar el periodo de certificación."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpPeriodo"
+			    DataType="Date"
+			    DateFormat="MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de periodo es inválido (mm/yyyy)." />
+			<br />
+			<span class="label required">$ Certificación</span>
+	       	<com:TActiveTextBox
+		   		ID="txtMontoAvance"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el $ de certificación"
+				AutoCompleteType="Disabled"
+				Text="0.00"
+				AutoPostBack="true"
+				OnTextChanged="txtMontoAvance_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtMontoAvance"
+				ErrorMessage="Debe ingresar el $ de certificación."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtMontoAvance"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ID="cvMontoAvance"
+				ControlToValidate="txtMontoAvance"
+	  			Text="*"
+		   		ErrorMessage="No puede certificar más del 100% de la obra."
+				Display="Dynamic"
+			  	OnServerValidate="cvMontoAvance_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+	       	<span class="label required">% Certificación</span>
+	       	<com:TActiveTextBox
+		   		ID="txtPorcentajeAvance"
+				CssClass="small"
+				MaxLength="9"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el % de certificación"
+				AutoCompleteType="Disabled"
+				Text="0.00000"
+				Enabled="false" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtPorcentajeAvance"
+				ErrorMessage="Debe ingresar el % de certificación."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtPorcentajeAvance"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Anticipo Financiero</span>
+	       	<com:TActiveTextBox
+		   		ID="txtAnticipoFinanciero"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de anticipo financiero"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtAnticipoFinanciero"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Descuento Anticipo</span>
+	       	<com:TActiveTextBox
+		   		ID="txtDescuentoAnticipo"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de descuento de anticipo financiero"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtDescuentoAnticipo"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Retención Multa</span>
+	       	<com:TActiveTextBox
+		   		ID="txtRetencionMulta"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de retención por multa"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtRetencionMulta"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Ret. Fondo Reparo</span>
+	       	<com:TActiveTextBox
+		   		ID="txtFondoReparo"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de retención para fondo de reparo"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtFondoReparo"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Redet. de Precios</span>
+	       	<com:TActiveTextBox
+		   		ID="txtRedeterminacionPrecios"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de redeterminación de precios"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtRedeterminacionPrecios"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Otros Conceptos</span>
+	       	<com:TActiveTextBox
+		   		ID="txtOtrosConceptos"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe de otros conceptos"
+				AutoCompleteType="Disabled"
+				AutoPostBack="true"
+				OnTextChanged="txtImporte_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+				ClientSide.OnComplete="Element.hide('callback_status')" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtOtrosConceptos"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Importe Neto</span>
+	       	<com:TActiveTextBox
+		   		ID="txtImporteNeto"
+				CssClass="medium"
+				MaxLength="15"
+				AutoTrim="True"
+		   		ToolTip="Ingrese el importe neto del certificado"
+				AutoCompleteType="Disabled"
+				Text="0.00"
+				Enabled="false" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtImporteNeto"
+				ErrorMessage="Debe ingresar el importe neto del certificado."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtImporteNeto"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Float"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Fecha Vto. Pago</span>
+			<com:TDatePicker
+				ID="dtpFechaVto"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaVto"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br />
+			<span class="label">Cant. Mano Obra</span>
+	       	<com:TTextBox
+		   		ID="txtManoObra"
+				CssClass="small"
+				MaxLength="5"
+				AutoTrim="True"
+		   		ToolTip="Ingrese la cantidad de mano de obra ocupada"
+				AutoCompleteType="Disabled" />
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtManoObra"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Integer"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label">Observaciones</span>
+			<com:TTextBox
+		   		ID="txtObservaciones"
+		   		TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				CssClass="small"
+				AutoTrim="True"
+		   		ToolTip="Ingrese las observaciones de la certificación"/>
+		   	<br /><br />
+		   	<span class="maintitle2">Cambio de Estado de la Obra</span>
+		   	<br /><br />
+	       	<span class="label required">Estado de Obra</span>
+			<com:TDropDownList
+	       		ID="ddlEstado"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Descripcion"
+	       		DatavalueField="IdEstadoObra" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlEstado"
+				ErrorMessage="Debe seleccionar un estado de obra."
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ID="cvEstado"
+				ControlToValidate="ddlEstado"
+	  			Text="*"
+		   		ErrorMessage=""
+				Display="Dynamic"
+			  	OnServerValidate="cvEstado_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+			<span class="label">Detalle de Estado</span>
+			<com:TTextBox
+	       		ID="txtDetalleEstado"
+				CssClass="largest"
+				MaxLength="1000"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese un texto que detalle el estado de la obra"/>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

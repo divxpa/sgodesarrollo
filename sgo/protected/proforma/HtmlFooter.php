@@ -1,0 +1,1 @@
+<p class='footer' align='right'>{PAGENO}/{nb}</p>

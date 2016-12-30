@@ -1,0 +1,58 @@
+<%@   Title="S.G.O. - Estado de Obra" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<a class="maintitle volver" href="?page=Admin.EstadoObra.Home">Estados de Obra</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Estado de Obra"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+	       	<span class="label required">Descripción</span>
+			<com:TTextBox
+	       		ID="txtDescripcion"
+				CssClass="largest"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la descripción del estado de obra"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDescripcion"
+				ErrorMessage="Debe ingresar la descripción del estado de obra."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ControlToValidate="txtDescripcion"
+	  			Text="*"
+		   		ErrorMessage="El estado de obra ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvEstadoObra_OnServerValidate"
+			 	ValidationGroup="Register"/>
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

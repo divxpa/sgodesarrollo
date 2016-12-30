@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core
+END
+MessageSource_Database.php
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource_Database.php
+END
+MessageSource_MySQL.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource_MySQL.php
+END
+MessageSource_XLIFF.php
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource_XLIFF.php
+END
+MessageFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageFormat.php
+END
+CultureInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/CultureInfo.php
+END
+NumberFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/NumberFormat.php
+END
+ChoiceFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/ChoiceFormat.php
+END
+TCache_Lite.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/TCache_Lite.php
+END
+MessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource.php
+END
+MessageCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageCache.php
+END
+MessageSource_gettext.php
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource_gettext.php
+END
+HTTPNegotiator.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/HTTPNegotiator.php
+END
+NumberFormatInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/NumberFormatInfo.php
+END
+util.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/util.php
+END
+IMessageSource.php
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/IMessageSource.php
+END
+DateTimeFormatInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/DateTimeFormatInfo.php
+END
+MessageSource_SQLite.php
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/MessageSource_SQLite.php
+END
+DateFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/I18N/core/DateFormat.php
+END

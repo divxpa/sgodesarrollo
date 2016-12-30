@@ -1,0 +1,119 @@
+<%@   Title="S.G.O. - Usuario" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <a class="maintitle volver" href="?page=Admin.Usuario.Home">Usuarios</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Usuario"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Organismo</span>
+			<com:TDropDownList
+	       		ID="ddlOrganismo"
+	       		ToolTip="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdOrganismo" />
+			<br />
+	       	<span class="label required">Apellido y Nombre</span>
+			<com:TTextBox
+	       		ID="txtApellidoNombre"
+				CssClass="medium"
+				MaxLength="255"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el apellido y nombre del usuario"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtApellidoNombre"
+				ErrorMessage="Debe ingresar el apellido y nombre del usuario."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Nombre de Usuario</span>
+			<com:TTextBox
+	       		ID="txtUsername"
+				CssClass="medium"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el nombre de usuario"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtUsername"
+				ErrorMessage="Debe ingresar un nombre de usuario."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ControlToValidate="txtUsername"
+	  			Text="*"
+		   		ErrorMessage="El nombre de usuario ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvUsername_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Contraseña:</span>
+			<com:TLabel
+				ID="labelContrasena"
+				Visible="false"
+				Text="No puede modificar la contraseña"
+				CssClass="labeldata" />
+			<com:TTextBox
+				ID="txtPassword"
+				MaxLength="20"
+				CssClass="large"
+				TextMode="Password" />
+			<com:TRequiredFieldValidator
+				ID="requiredContrasena"
+				ControlToValidate="txtPassword"
+				Text="*"
+				ErrorMessage="Debe ingresar la contraseña."
+				Display="Dynamic"
+				ValidationGroup="Register"/>
+			<br/>
+			<span class="label required">Rol</span>
+			<com:TDropDownList
+	       		ID="ddlRol"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione"
+	       		DataTextField="Nombre"
+	       		DatavalueField="IdRol" />
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlRol"
+				ErrorMessage="Debe seleccionar un rol"
+				Display="Dynamic"
+				Text="*"
+				InitialValue="0"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Activo</span>
+			<com:TCheckBox 
+				ID="chkActivo"
+				Checked="True" />
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

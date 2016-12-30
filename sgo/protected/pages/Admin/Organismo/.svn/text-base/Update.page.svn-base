@@ -1,0 +1,82 @@
+<%@   Title="S.G.O. - Organismo" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <a class="maintitle volver" href="?page=Admin.Organismo.Home">Organismos</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Organismo"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Código</span>
+			<com:TTextBox
+	       		ID="txtCodigo"
+				CssClass="small"
+				MaxLength="2"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el código de organismo"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtCodigo"
+				ErrorMessage="Debe ingresar un código de organismo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TRegularExpressionValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="txtCodigo"
+			    RegularExpression="\d{2}"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="Ingrese un código válido (00)." />
+			<com:TCustomValidator
+				ControlToValidate="txtCodigo"
+	  			Text="*"
+		   		ErrorMessage="El código de organismo ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvCodigo_OnServerValidate"
+			 	ValidationGroup="Register"/>
+	       	<br />
+	       	<span class="label required">Nombre</span>
+			<com:TTextBox
+	       		ID="txtNombre"
+				CssClass="large"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el nombre del organismo"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNombre"
+				ErrorMessage="Debe ingresar el nombre del organismo."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+	       	<span class="label">Comitente de otros organismos</span>
+			<com:TCheckBox ID="chkComitente" Checked="false" />
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

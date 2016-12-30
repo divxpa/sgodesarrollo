@@ -1,0 +1,20 @@
+<%@   Title="S.G.O." %>
+<com:TContent ID="MainContent">
+	<div>
+		<span class="label" style="margin-top: 8px;">Seleccionar localidad</span>
+		<com:TDropDownList
+       		ID="ddlLocalidad"
+       		ToolTip="Seleccione"
+       		PromptValue="0"
+       		PromptText="Seleccione"
+       		DataTextField="Nombre"
+       		DatavalueField="IdLocalidad" />
+       	<com:TActiveButton
+		    ID="btnBuscar"
+		    Text="Buscar"
+		    OnClick="btnBuscar_OnClick"
+		    ClientSide.OnLoading="Element.show('callback_status')"
+        	ClientSide.OnComplete="Element.hide('callback_status')" />
+	</div>
+	<com:PGCalendar ID="Calendario" />
+</com:TContent>

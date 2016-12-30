@@ -1,0 +1,144 @@
+<%@   Title="S.G.O. - Proyecto de inversión" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Proyecto de inversión"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Localización</span>
+			<com:TTextBox
+	       		ID="txtLocalizacion"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la localización"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtLocalizacion"
+				ErrorMessage="Debe ingresar la localización."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label required">Proyecto/Obra</span>
+			<com:TTextBox
+	       		ID="txtProyecto"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el proyecto/obra"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtProyecto"
+				ErrorMessage="Debe ingresar el proyecto/obra."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label">Descripción</span>
+			<com:TTextBox
+	       		ID="txtDescripcion"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese descripción"/>
+	       	<br>
+			<span class="label">Monto estimado</span>
+			<com:TTextBox
+	       		ID="txtMontoEstimado"
+				CssClass="medium"
+				MaxLength="15"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese monto estimado"/>
+	       	<br>
+	       	<span class="label">Moneda</span>
+			<com:TDropDownList
+	       		ID="ddlMoneda"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione">
+	       		<com:TListItem Value="1" Text="Peso" />
+	       		<com:TListItem Value="2" Text="Dólar" />
+	       	</com:TDropDownList>
+	       	<br>
+	       	<span class="label">Fecha de estimación de costo</span>
+			<com:TDatePicker
+				ID="dtpFechaEstimacionCosto"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFechaEstimacionCosto"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+			<br>
+			<span class="label required">Estado</span>
+			<com:TDropDownList
+	       		ID="ddlEstado"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione">
+	       		<com:TListItem Value="1" Text="Perfil" />
+	       		<com:TListItem Value="2" Text="Anteproyecto" />
+	       		<com:TListItem Value="3" Text="Proyecto" />
+	       		<com:TListItem Value="4" Text="Licitación" />
+	       		<com:TListItem Value="5" Text="Ejecución" />
+	       	</com:TDropDownList>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlEstado"
+				ErrorMessage="Debe ingresar el estado."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label required">Prioridad</span>
+			<com:TDropDownList
+	       		ID="ddlPrioridad"
+	       		ToolTip="Seleccione"
+	       		PromptValue="0"
+	       		PromptText="Seleccione">
+	       		<com:TListItem Value="1" Text="Urgente" />
+	       		<com:TListItem Value="2" Text="Estructural" />
+	       		<com:TListItem Value="3" Text="Estratégica" />
+	       	</com:TDropDownList>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="ddlPrioridad"
+				ErrorMessage="Debe ingresar la prioridad."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label">Observaciones</span>
+			<com:TTextBox
+		   		ID="txtObservaciones"
+		   		TextMode="MultiLine"
+   				Rows="4"
+				Columns="50"
+				CssClass="small"
+				AutoTrim="True"
+		   		ToolTip="Ingrese las observaciones"/>
+		</fieldset>
+	</div>
+</com:TContent>

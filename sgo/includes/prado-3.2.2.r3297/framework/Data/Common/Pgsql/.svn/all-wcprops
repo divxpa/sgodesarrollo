@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Pgsql
+END
+TPgsqlMetaData.php
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Pgsql/TPgsqlMetaData.php
+END
+TPgsqlTableInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Pgsql/TPgsqlTableInfo.php
+END
+TPgsqlCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Pgsql/TPgsqlCommandBuilder.php
+END
+TPgsqlTableColumn.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Pgsql/TPgsqlTableColumn.php
+END

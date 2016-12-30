@@ -1,0 +1,24 @@
+<div class='span12' >
+  <center>
+
+
+<?php
+
+  if(isset($_SESSION["usr"])){
+    
+    if(!isset($_REQUEST["logout"])){
+      include("principal.php");
+    }
+    else{
+      include("logout.php");
+    }
+
+  }
+  else{
+    include("login.php");
+  }
+
+?>
+
+  </center>
+</div>

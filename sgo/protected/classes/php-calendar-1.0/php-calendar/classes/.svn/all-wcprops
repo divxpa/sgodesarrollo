@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/OENEJE/!svn/ver/53/trunk/3_construction/Web/protected/classes/php-calendar-1.0/php-calendar/classes
+END
+calendar.php
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/OENEJE/!svn/ver/53/trunk/3_construction/Web/protected/classes/php-calendar-1.0/php-calendar/classes/calendar.php
+END
+calendar_event.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/OENEJE/!svn/ver/53/trunk/3_construction/Web/protected/classes/php-calendar-1.0/php-calendar/classes/calendar_event.php
+END
+event_subject.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/OENEJE/!svn/ver/53/trunk/3_construction/Web/protected/classes/php-calendar-1.0/php-calendar/classes/event_subject.php
+END
+event_observer.php
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/OENEJE/!svn/ver/53/trunk/3_construction/Web/protected/classes/php-calendar-1.0/php-calendar/classes/event_observer.php
+END

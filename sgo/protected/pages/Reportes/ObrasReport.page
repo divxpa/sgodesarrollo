@@ -1,0 +1,67 @@
+<%@  Title="S.G.O. - Reporte de Obras" %>
+<com:TContent ID="MainContent">
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Reporte de Obras"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Código:</span>
+				<com:TActiveTextBox
+				    ID="txtCodigo"
+				    AutoTrim="true"
+				    CssClass="small" />
+				<span>Denominación:</span>
+				<com:TActiveTextBox
+				    ID="txtDenominacion"
+				    AutoTrim="true"
+				    CssClass="large" />
+				<span>Expediente:</span>
+				<com:TActiveTextBox
+				    ID="txtExpediente"
+				    AutoTrim="true"
+				    CssClass="medium" />
+				<br />
+				<span>Localidad: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlLocalidad"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Nombre"
+		       		DataValueField="IdLocalidad" />
+		       	<br />
+		       	<table>
+		       		<tr>
+		       			<td valign="top">
+		       				<span>Estado: </span>
+		       			</td>
+		       			<td>
+		       				<com:TActiveLinkButton ID="btnCheckEstados" Text="Desmarcar Todos" OnClick="btnCheckEstados_OnClick" /><br />
+		       				<com:TActiveCheckBoxList ID="chkEstado" DataTextField="Descripcion" DataValueField="IdEstadoObra" RepeatDirection="Vertical" RepeatLayout="Flow" />
+		       			</td>
+		       		</tr>
+		       	</table>       	
+		       	<com:TCheckBox 
+		       		ID="chkCertificaciones" 
+		       		Text="Incluir certificaciones"
+		       		Checked="True" />
+		       	<br />
+		       	<com:TActiveButton
+				    ID="btnConsultar"
+				    Text="Consultar"
+				    OnClick="btnConsultar_OnClick"
+				    ClientSide.RequestTimeOut="360000"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnExportar"
+				    Text="Exportar Excel"
+				    OnClick="btnExportar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />	
+			</div>
+		</div>
+	</div>
+</com:TContent>

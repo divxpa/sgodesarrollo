@@ -1,0 +1,89 @@
+<%@  Title="S.G.O. - Pagos" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Tesoreria.Pago.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Pagos"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Fecha Desde</span>
+				<com:TActiveDatePicker
+					ID="dtpFechaDesde"
+					DateFormat="dd/MM/yyyy"
+					Culture="es" />
+				<span>Fecha Hasta</span>
+				<com:TActiveDatePicker
+					ID="dtpFechaHasta"
+					DateFormat="dd/MM/yyyy"
+					Culture="es" />
+		       	<span>Proveedor: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlProveedor"
+		       		ToolTip="Seleccione"
+		       		PromptValue="0"
+		       		PromptText="Seleccione"
+		       		DataTextField="Descripcion"
+		       		DatavalueField="IdProveedor" />
+		       	<br />
+				<span>Búsqueda:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnVerTodos"
+				    Text="Ver todos"
+				    OnClick="btnVerTodos_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="Fecha" HeaderText="F. Pago" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="OrdenPago" HeaderText="Orden de Pago" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Proveedor" HeaderText="Proveedor"/>
+				<com:TBoundColumn DataField="ImporteBruto" HeaderText="Imp. Bruto" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Retenciones" HeaderText="Retenciones" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="ImporteNeto" HeaderText="Imp. Neto" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+				            NavigateUrl="?page=Tesoreria.Pago.Update&id=<%# $this->Parent->Data['IdPago']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Mysql
+END
+TMysqlMetaData.php
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Mysql/TMysqlMetaData.php
+END
+TMysqlTableInfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Mysql/TMysqlTableInfo.php
+END
+TMysqlCommandBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Mysql/TMysqlCommandBuilder.php
+END
+TMysqlTableColumn.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/Common/Mysql/TMysqlTableColumn.php
+END

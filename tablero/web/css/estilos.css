@@ -1,0 +1,161 @@
+/* Bootstrap */
+
+.wrap {
+    margin-bottom: -21px!important;
+}
+
+.wrap > .container {
+    padding: initial !important;
+}
+
+header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+header .header {
+    background-color: #19458D;
+    padding: 5px;
+}
+
+header .header h1 {
+    color: #FFF;
+    margin-top: 15px;
+    padding-left: 8px;
+    font-weight: 800;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header .header h1 .subtitle{
+    color: #DDD;
+    font-weight: 200;
+}
+
+header nav {
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #EEE;
+}
+
+header nav a {
+    color: #555;
+}
+
+
+
+
+.espacio {
+	display: block;
+	height: 125px;
+    
+}
+
+.form-group {
+    display: flex;
+}
+
+.form-group label {
+    margin-top: 7px;
+    margin-right: 7px;
+}
+
+.form-buttons {
+    float: right !important;
+    text-align: right;
+}
+
+.breadcrumbs-container {
+    display: none;
+}
+
+.modal {
+    top: 150px !important;
+}
+
+table th {
+    font-size: 12.5px;
+    padding: 4px !important;
+}
+
+table tr td {
+    font-size: 12px;
+    padding: 4px !important;
+}
+
+.table-container {
+    padding: 0px 28px;
+}
+
+
+.footer {
+    /*height: 45px!important;
+    //background-color: #111!important;
+    
+    //color: #DDD;*/
+
+/*position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;*/
+    height: 21px!important;
+    padding-top: 0px!important;
+    /*clear: both;*/
+    text-align: center;
+    color: #000000;
+    background: rgb(0,0,0);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, rgba(0,0,0,1) 2%, rgba(17,17,17,1) 16%, rgba(40,40,40,1) 34%, rgba(56,56,56,1) 52%, rgba(28,28,28,1) 76%, rgba(19,19,19,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(0,0,0,1)), color-stop(16%,rgba(17,17,17,1)), color-stop(34%,rgba(40,40,40,1)), color-stop(52%,rgba(56,56,56,1)), color-stop(76%,rgba(28,28,28,1)), color-stop(100%,rgba(19,19,19,1)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,1) 2%,rgba(17,17,17,1) 16%,rgba(40,40,40,1) 34%,rgba(56,56,56,1) 52%,rgba(28,28,28,1) 76%,rgba(19,19,19,1) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,1) 2%,rgba(17,17,17,1) 16%,rgba(40,40,40,1) 34%,rgba(56,56,56,1) 52%,rgba(28,28,28,1) 76%,rgba(19,19,19,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,1) 2%,rgba(17,17,17,1) 16%,rgba(40,40,40,1) 34%,rgba(56,56,56,1) 52%,rgba(28,28,28,1) 76%,rgba(19,19,19,1) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 2%,rgba(17,17,17,1) 16%,rgba(40,40,40,1) 34%,rgba(56,56,56,1) 52%,rgba(28,28,28,1) 76%,rgba(19,19,19,1) 100%);    
+}
+
+/**
+ *  Página Proveedores
+ */
+
+.titulo.proveedor {
+    margin-bottom: 30px;
+}
+
+
+/**
+ *  Página Alarmas
+ */
+
+.alarma-3 {
+    color: red;
+}
+.alarma-2 {
+    color: orange;
+}
+.alarma-1 {
+    color: green;
+}
+
+
+.btn-alarmas {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 2px;
+    float: right;
+}
+
+.btn {
+    margin: 0!important;
+}
+
+
+
+/* INDICADORES */
+
+.numero1 {
+    min-width: 2em;
+    display: inline-block;
+}

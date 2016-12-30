@@ -1,0 +1,118 @@
+<%@  Title="S.G.O. - Proyectos de inversión" %>
+<com:TContent ID="MainContent">
+<script language='javascript'>
+	(function($) {
+		$(document).ready(function() {
+		    $('#container').scroll(function() {
+		    	var s = $('#sticker');
+		        var windowposTop = $('#container').scrollTop();
+		        var windowposLeft = $('#container').scrollLeft();
+		        var contentPadding = parseInt($('#content').css('padding-left'));
+
+		        if (windowposTop >= 185) {
+		     		s.css('top', -5);
+		     		s.css('left', contentPadding - windowposLeft);
+		     		s.css('position', 'fixed');
+		        } else {
+		            s.css('top', 0);
+		            s.css('left', 0);
+		            s.css('position', 'relative');
+		        }
+
+		    });
+		    
+	});} ) ( jQuery );
+</script>
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Obra.SolicitudProyecto.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Proyectos de inversión"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Búsqueda:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+		        <com:TActiveButton
+				    ID="btnVerTodos"
+				    Text="Ver todos"
+				    OnClick="btnVerTodos_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<div id='sticker' style='width: 1300px;'>
+				<table class='TableForm'>
+					<thead>
+						<tr>							
+							<th style='width: 70px;'>Fecha</th>
+							<th style='width: 200px;'>Proyecto/Obra</th>
+							<th style='width: 200px;'>Descripción</th>
+							<th style='width: 100px;'>Localización</th>
+							<th style='width: 100px;'>Monto estimado</th>
+							<th style='width: 80px;'>Moneda</th>
+							<th style='width: 80px;'>Estado</th>
+							<th style='width: 80px;'>Prioridad</th>
+							<th style='width: 22px'>&nbsp;</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div style='width: 1300px;'>
+				<com:TActiveDataGrid
+				    ID="dgDatos"
+				    Style="font-size: 9px;"
+					CssClass="TableForm"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    ItemStyle.CustomStyle="text-wrap: unrestricted";
+				    AlternatingItemStyle.CustomStyle="text-wrap: unrestricted";
+				    AutoGenerateColumns="false"
+		            AllowPaging="true"
+					AllowCustomPaging="false"
+					PageSize="15"
+			        PagerStyle.Mode="Numeric"
+			        PagerStyle.HorizontalAlign="Right"
+					PagerStyle.CssClass="pager"
+			        AllowSorting="false"
+			        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+			        OnPagerCreated="dgDatos_OnPagerCreated"
+			        ShowHeader="false">				        
+						<com:TBoundColumn DataField="FechaSolicitudDesc" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 64px; min-width: 64px; max-width: 64px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Proyecto" HeaderText="Proyecto/Obra" ItemStyle.CustomStyle="width: 194px; min-width: 194px; max-width: 194px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Descripcion" HeaderText="Descripción" ItemStyle.CustomStyle="width: 194px; min-width: 194px; max-width: 194px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="Localizacion" HeaderText="Localización" ItemStyle.CustomStyle="width: 94px; min-width: 94px; max-width: 94px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="MontoEstimado" HeaderText="Monto estimado" ItemStyle.CustomStyle="width: 94px; min-width: 94px; max-width: 94px; word-wrap: break-word; text-wrap: unrestricted" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+						<com:TBoundColumn DataField="MonedaDesc" HeaderText="Moneda" ItemStyle.CustomStyle="width: 74px; min-width: 74px; max-width: 74px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="EstadoDesc" HeaderText="Estado" ItemStyle.CustomStyle="width: 74px; min-width: 74px; max-width: 74px; word-wrap: break-word; text-wrap: unrestricted"/>
+						<com:TBoundColumn DataField="PrioridadDesc" HeaderText="Prioridad" ItemStyle.CustomStyle="width: 74px; min-width: 74px; max-width: 74px; word-wrap: break-word; text-wrap: unrestricted"/>						
+						<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center" ItemStyle.CustomStyle="width: 16px; min-width: 16px; max-width: 16px; word-wrap: break-word; text-wrap: unrestricted">
+				            <prop:ItemTemplate>
+						       	<com:TActiveHyperLink
+						            ID="hlEditar"
+						            ToolTip="Haga click aquí para editar"
+						            NavigateUrl="?page=Obra.SolicitudProyecto.Update&id=<%# $this->Parent->Data['IdSolicitudProyecto']%>">
+						            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+						    	</com:TActiveHyperLink>
+				            </prop:ItemTemplate>
+		             	</com:TTemplateColumn>
+				</com:TActiveDataGrid>
+			</div>
+		</div>
+	</div>
+</com:TContent>

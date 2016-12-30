@@ -1,0 +1,141 @@
+<%@   Title="S.G.O. - Rol" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+			<a class="maintitle volver" href="?page=Admin.Rol.Home">Roles</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Rol"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+	       	<span class="label required">Nombre</span>
+			<com:TTextBox
+	       		ID="txtNombre"
+				CssClass="largest"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese el nombre del Rol"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNombre"
+				ErrorMessage="Debe ingresar el nombre del Rol."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TCustomValidator
+				ControlToValidate="txtNombre"
+	  			Text="*"
+		   		ErrorMessage="El rol ya existe."
+				Display="Dynamic"
+			  	OnServerValidate="cvRol_OnServerValidate"
+			 	ValidationGroup="Register"/>
+			<br>
+
+		 	<span class="label">Botones</span>
+			<com:TCheckBoxList ID="CheckBoxListBotones"
+			    DataTextField="Titulo"
+			    DataValueField="IdBoton" />
+		    <com:THiddenField ID="hdnBotonesResult" Value=""/>
+			<br>
+
+			<div id="paginas" style="clear: both; overflow: auto;">
+			 	<span class="label">Paginas</span>
+				<com:TCheckBoxList ID="CheckBoxListPaginas"
+				    DataTextField="Descripcion"
+				    DataValueField="IdPagina" />
+			    <com:THiddenField ID="hdnPaginasResult" Value=""/>
+			    <div style="margin-top: 20px; margin-left: 160px;">
+					<span class="button" href="javascript:void(0)" onclick="seleccionarTodas();">Todas</span>
+					<span class="button" href="javascript:void(0)" onclick="seleccionarNinguna();">Ninguna</span>
+			    </div>
+			</div>
+			<br>
+						
+			<!--span class="label required">Activo</span-->
+			<!-- c o m : T C h e c k B o x 
+				ID="chkActivo"
+				Checked="True" /-->
+
+
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+
+
+<style>
+
+table[id*=CheckBoxListPaginas] tr {
+    width: 18%;
+    margin-right: 1%;
+    float: left;
+}
+</style>
+
+
+<script src="assets/js/pradocheckboxlist.js"></script>
+<script>
+
+	// Botones
+	var valoresBotones = jQuery("input[type=hidden][id*=hdnBotonesResult]");
+	var chkBotones = new PradoCheckboxList("CheckBoxListBotones", valoresBotones.val());
+
+	chkBotones.checkAction = function(){
+		valoresBotones.val(chkBotones.getValues());
+		jQuery("#paginas").css(
+			"display", 
+			jQuery("input[type=checkbox][value=1][id*=CheckBoxListBotones]")[0].checked ||
+			jQuery("input[type=checkbox][value=3][id*=CheckBoxListBotones]")[0].checked ? "block" : "none"
+		);
+	}
+	chkBotones.checkAction();
+
+
+	// Paginas
+	var valoresPaginas = jQuery("input[type=hidden][id*=hdnPaginasResult]");
+	var chkPaginas = new PradoCheckboxList("CheckBoxListPaginas", valoresPaginas.val());
+
+	chkPaginas.checkAction = function(){
+		valoresPaginas.val(chkPaginas.getValues());
+	}
+
+	function seleccionarTodas() {
+		jQuery("input[type=checkbox][id*=CheckBoxListPaginas]").each(function(i, elem){
+			elem.checked = true;
+		});
+		chkPaginas.checkAction()
+	}
+	function seleccionarNinguna() {
+		jQuery("input[type=checkbox][id*=CheckBoxListPaginas]").each(function(i, elem){
+			elem.checked = false;
+		});
+		chkPaginas.checkAction()
+	}
+
+
+</script>
+
+
+</com:TContent>

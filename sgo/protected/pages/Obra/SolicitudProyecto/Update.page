@@ -1,0 +1,227 @@
+<%@   Title="S.G.O. - Proyecto de inversión" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <a class="maintitle volver" href="?page=Obra.SolicitudProyecto.Home">Proyectos de inversión</a>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Proyecto de inversión"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<span class="label required">Fecha de solicitud</span>
+		<com:TDatePicker
+			ID="dtpFechaSolicitud"
+			DateFormat="dd/MM/yyyy"
+			Culture="es" />
+		<com:TRequiredFieldValidator
+				ControlToValidate="dtpFechaSolicitud"
+				ErrorMessage="Debe ingresar la fecha."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		<com:TDataTypeValidator
+		    ValidationGroup="Register"
+		    ControlToValidate="dtpFechaSolicitud"
+		    DataType="Date"
+		    DateFormat="dd/MM/yyyy"
+		    Text="*"
+		    Display="Dynamic"
+		    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />		   
+		<br />
+		<fieldset style="width: 45%; float: left;">
+			<legend>REGISTRO DEL SOLICITANTE</legend>
+			<span class="label required" style="width: 100%;">Municipio/Comisión de Fomento/Organismo/Ente</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtSolicitante"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese solicitante"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtSolicitante"
+				ErrorMessage="Debe ingresar un solicitante."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label required" style="width: 100%;">Departamento</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtDepartamento"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese departamento"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtDepartamento"
+				ErrorMessage="Debe ingresar un departamento."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label required" style="width: 100%;">Autoridad legal del Municipio/Comisión de Fomento/Organismo/Ente</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtAutoridadSolicitante"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese autoridad"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtAutoridadSolicitante"
+				ErrorMessage="Debe ingresar la autoridad solicitante."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label" style="width: 100%;">Domicilio</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtDomicilioSolicitante"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese domicilio"/>
+	       	<br>
+			<span class="label" style="width: 100%;">Teléfono</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtTelefonoSolicitante"
+				CssClass="large"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese teléfono"/>
+	       	<br>
+			<span class="label" style="width: 100%;">E-mail</span>
+			<com:TTextBox
+	       		ID="txtEmailSolicitante"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese e-mail"/>
+		</fieldset>
+		<fieldset style="width: 45%; float: left;">
+			<legend>DESIGNACIÓN DE REFERENTE DEL PROYECTO DE INVERSIÓN PÚBLICA</legend>
+			<span class="label required" style="width: 100%;">Apellido y Nombre del referente</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtReferente"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese referente"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtReferente"
+				ErrorMessage="Debe ingresar un referente."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br>
+			<span class="label" style="width: 100%;">D.N.I.</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtDniReferente"
+				CssClass="medium"
+				MaxLength="8"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese dni"/>
+			<br>
+			<span class="label" style="width: 100%;">Cargo</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtCargoReferente"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese cargo"/>
+			<br>
+			<span class="label" style="width: 100%;">Domicilio</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtDomicilioReferente"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese domicilio"/>
+	       	<br>
+			<span class="label" style="width: 100%;">Teléfono</span>
+			<br>
+			<com:TTextBox
+	       		ID="txtTelefonoReferente"
+				CssClass="large"
+				MaxLength="50"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese teléfono"/>
+	       	<br>
+			<span class="label" style="width: 100%;">E-mail</span>
+			<com:TTextBox
+	       		ID="txtEmailReferente"
+				CssClass="largest"
+				MaxLength="100"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese e-mail"/>
+		</fieldset>
+		<br>
+		<span class="maintitle2">PROYECTOS</span>
+		<com:TImageButton
+			ID="btnAgregarProyecto"
+			ToolTip="Agregar proyecto"
+			ImageUrl="themes/serviciospublicos/images/btn2nuevo.png"
+			OnClick="btnAgregarProyecto_OnClick"
+			ValidationGroup="Register"
+			Width="20px" />
+		<com:TActiveDataGrid
+		    ID="dgProyectos"
+			CssClass="TableForm"
+		    AlternatingItemStyle.BackColor="#EEEEEE"
+		    AutoGenerateColumns="false"
+            AllowPaging="false"
+			AllowCustomPaging="false"
+	        AllowSorting="false">
+			<com:TBoundColumn DataField="Localizacion" HeaderText="Localización"/>
+			<com:TBoundColumn DataField="Proyecto" HeaderText="Proyecto/Obra"/>
+			<com:TBoundColumn DataField="Descripcion" HeaderText="Descripción"/>
+			<com:TBoundColumn DataField="MontoEstimado" HeaderText="Monto Estimado" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+			<com:TBoundColumn DataField="MonedaDesc" HeaderText="Moneda"/>
+			<com:TBoundColumn DataField="FechaEstimacionCostoDesc" HeaderText="Fecha estimación costo" ItemStyle.HorizontalAlign="Center"/>
+			<com:TBoundColumn DataField="EstadoDesc" HeaderText="Estado"/>
+			<com:TBoundColumn DataField="PrioridadDesc" HeaderText="Prioridad"/>
+			<com:TBoundColumn DataField="Observaciones" HeaderText="Observaciones"/>
+			<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+	            <prop:ItemTemplate>
+			       	<com:TActiveHyperLink
+			            ID="hlEditar"
+			            ToolTip="Haga click aquí para editar"
+			            NavigateUrl="?page=Obra.SolicitudProyecto.UpdateProyecto&id=<%# $this->Parent->Data['IdSolicitudProyectoDetalle']%>&ids=<%# $this->Parent->Data['IdSolicitudProyecto']%>">
+			            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+			    	</com:TActiveHyperLink>
+	            </prop:ItemTemplate>
+         	</com:TTemplateColumn>
+	  	</com:TActiveDataGrid>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper
+END
+TPropertyAccess.php
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TPropertyAccess.php
+END
+TSqlMapTypeHandlerRegistry.php
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TSqlMapTypeHandlerRegistry.php
+END
+TSqlMapPagedList.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TSqlMapPagedList.php
+END
+TLazyLoadList.php
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TLazyLoadList.php
+END
+messages.txt
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/messages.txt
+END
+TSqlMapException.php
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TSqlMapException.php
+END
+TSqlMapCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TSqlMapCache.php
+END
+TFastSqlMapApplicationCache.php
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/SqlMap/DataMapper/TFastSqlMapApplicationCache.php
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold
+END
+TScaffoldSearch.php
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldSearch.php
+END
+TScaffoldListView.php
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldListView.php
+END
+TScaffoldEditView.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldEditView.tpl
+END
+TScaffoldBase.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldBase.php
+END
+TScaffoldView.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldView.php
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/style.css
+END
+TScaffoldSearch.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldSearch.tpl
+END
+TScaffoldListView.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldListView.tpl
+END
+TScaffoldEditView.php
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldEditView.php
+END
+TScaffoldView.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/OENEJE/!svn/ver/1/trunk/3_construction/Web/includes/prado-3.2.2.r3297/framework/Data/ActiveRecord/Scaffold/TScaffoldView.tpl
+END

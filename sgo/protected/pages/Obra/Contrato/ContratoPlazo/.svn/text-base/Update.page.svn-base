@@ -1,0 +1,107 @@
+<%@   Title="S.G.O. - Ampliación de Plazo de Contrato" %>
+<com:TContent ID="MainContent">
+	<div style="height: 59px;">
+		<div style="display: inline;">
+	        <span class="maintitle">Contratos >> </span>
+	    	<com:TLabel
+		        ID="lblAccion"
+		        Text=" Agregar Ampliación de Plazo de Contrato"
+		        CssClass="maintitle" />
+		</div>
+		<div id="button-bar-top" style="margin: 15px 0 0 0;">
+			<com:TImageButton
+				ID="btnAceptar"
+				ToolTip="Guardar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-guardar"
+				OnClick="btnAceptar_OnClick"
+				Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+				ValidationGroup="Register" />
+			<com:TImageButton
+				ID="btnCancelar"
+				ToolTip="Cancelar"
+				ImageUrl="themes/serviciospublicos/images/invisible.png"
+				CssClass="imgbtn2-cancelar"
+				OnClick="btnCancelar_OnClick" />
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<span class="label required">Obra</span>
+			<com:TLabel 
+				ID="lblObra" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">Contrato</span>
+			<com:TLabel 
+				ID="lblContrato" 
+				CssClass="labeldata"/>
+			<br />
+			<span class="label required">N.L. de Aprobación</span>
+			<com:TTextBox
+	       		ID="txtNLAprobacion"
+				CssClass="small"
+				MaxLength="10"
+	            AutoTrim="True"
+	       		ToolTip="Ingrese la norma legal de aprobación de la ampliación"/>
+	       	<com:TRequiredFieldValidator
+				ControlToValidate="txtNLAprobacion"
+				ErrorMessage="Debe ingresar la norma legal de aprobación de la ampliación."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Cantidad de Días</span>
+	       	<com:TActiveTextBox
+		   		ID="txtCantidadDias"
+				CssClass="small"
+				MaxLength="5"
+				AutoTrim="True"
+		   		ToolTip="Ingrese la cantidad de días de la ampliación"
+				AutoCompleteType="Disabled"
+				AutoPostBack="True"
+				OnTextChanged="txtCantidadDias_OnTextChanged"
+				ClientSide.OnLoading="Element.show('callback_status')"
+		        ClientSide.OnComplete="Element.hide('callback_status')" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="txtCantidadDias"
+				ErrorMessage="Debe ingresar la cantidad de días de la ampliación."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+		   	<com:TDataTypeValidator
+				ControlToValidate="txtCantidadDias"
+				ErrorMessage="Debe ingresar un número válido."
+				DataType="Integer"
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<br />
+			<span class="label required">Nueva Fecha de Finalización</span>
+			<com:TActiveDatePicker
+				ID="dtpFecha"
+				DateFormat="dd/MM/yyyy"
+				Culture="es" />
+			<com:TRequiredFieldValidator
+				ControlToValidate="dtpFecha"
+				ErrorMessage="Debe ingresar la nueva fecha de finalización."
+				Display="Dynamic"
+				Text="*"
+				ValidationGroup="Register"/>
+			<com:TDataTypeValidator
+			    ValidationGroup="Register"
+			    ControlToValidate="dtpFecha"
+			    DataType="Date"
+			    DateFormat="dd/MM/yyyy"
+			    Text="*"
+			    Display="Dynamic"
+			    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+		</fieldset>
+	</div>
+	<com:TValidationSummary
+		ShowMessageBox="false"
+		ShowSummary="true"
+		ValidationGroup="Register"
+		Display="Dynamic"
+		CssClass="Summary"/>
+</com:TContent>

@@ -1,0 +1,46 @@
+<%@  Title="S.G.O. - Comentarios de Alarma" %>
+<com:TContent ID="MainContent">
+	<span class="maintitle">Comentarios de Alarma</span><br />
+	<com:TLabel ID="lblResult" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="true"
+	            AllowPaging="false"
+				AllowCustomPaging="false"
+		        AllowSorting="false"
+		        ItemStyle.VerticalAlign="Top" />
+		</div>
+	</div>
+	<br /><br />
+	<com:TActivePanel ID="pnlAgregar">
+		<com:TLabel Text="Agregar comentario" />
+		<br />
+		<com:TTextBox
+	   		ID="txtComentario"
+	   		TextMode="MultiLine"
+			Rows="4"
+			Columns="50"
+			CssClass="small"
+			AutoTrim="True"
+	   		ToolTip="Ingrese el comentario" />
+	   	<br />
+	   	<com:TActiveImageButton
+			ID="btnAceptar"
+			ToolTip="Guardar"
+			ImageUrl="themes/serviciospublicos/images/invisible.png"
+			CssClass="imgbtn2-guardar"
+			OnClick="btnAceptar_OnClick"
+			Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+			ValidationGroup="Register" />
+		<com:TActiveImageButton
+			ID="btnCancelar"
+			ToolTip="Cancelar"
+			ImageUrl="themes/serviciospublicos/images/invisible.png"
+			CssClass="imgbtn2-cancelar"
+			OnClick="btnCancelar_OnClick" />
+	</com:TActivePanel>
+</com:TContent>

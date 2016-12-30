@@ -1,0 +1,83 @@
+<%@  Title="S.G.O. - Convenios de Obra" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			ID="btnAgregar"
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Obra.Contrato.UpdateAdmin"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<br />
+        
+	<com:THyperLink
+		CssClass="maintitle volver"
+        NavigateUrl="?page=Obra.HomeAdmin"
+        ToolTip="Volver"
+        Text="Obras" />
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Convenios de Obra"
+        CssClass="maintitle" />
+        
+	<br /><br />
+	<span class="maintitle2">Obra: </span>
+	<com:TLabel 
+		ID="lblObra"
+		CssClass="maintitle2" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="Proveedor" HeaderText="Proveedor"/>
+				<com:TBoundColumn DataField="Numero" HeaderText="Nro. de Convenio"/>
+				<com:TBoundColumn DataField="Fecha" HeaderText="Fecha" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="Monto" HeaderText="Monto Orig." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Alteracion" HeaderText="Monto Alt." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="RedeterminacionPrecios" HeaderText="Red. Precios" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="FechaBaseMonto" HeaderText="F. Base Monto" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="NormaLegalAutorizacion" HeaderText="NL Aut."/>
+				<com:TBoundColumn DataField="NormaLegalAdjudicacion" HeaderText="NL Adj."/>
+				<com:TBoundColumn DataField="PlazoEjecucion" HeaderText="Plazo Orig." ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="FechaInicio" HeaderText="F. Inicio Orig." ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="Ampliacion" HeaderText="Ampliac. Plazo" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="FechaFinalizacion" HeaderText="F. Finaliz." ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="PorcentajeAvance" HeaderText="% Certif." DataFormatString="#number_format({0},5,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="MontoAvance" HeaderText="$ Certif." DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+				<com:TTemplateColumn ID="tcCertificaciones" HeaderText="Certif." ItemStyle.HorizontalAlign="Center">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para ingresar a las certificaciones del convenio"
+				            NavigateUrl="?page=Obra.Contrato.Certificacion.HomeAdmin&idc=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+				            <img src="themes/serviciospublicos/images/document.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+				            NavigateUrl="?page=Obra.Contrato.Update&id=<%# $this->Parent->Data['IdContrato']%>&ido=<%# $this->Parent->Data['IdObra']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

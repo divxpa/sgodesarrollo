@@ -1,0 +1,464 @@
+<%@  Title="S.G.O. - Certificación por Periodo" %>
+<com:TContent ID="MainContent">
+	<script>
+
+		function MontoValidate(sender, parameter){
+			var monto = sender.options.ControlToValidate;
+			var avance = monto.replace('txtMontoAvance', 'txtPorcentajeAvance');
+			var avanceCtl = $(avance);
+			var montoCtl = $(monto);
+			
+			if(avanceCtl.value!=''){
+				return montoCtl.value!='';
+			}
+			else{
+				return true;
+			}
+
+		}
+
+		function NetoValidate(sender, parameter){
+			var neto = sender.options.ControlToValidate;
+			var avance = neto.replace('txtImporteNeto', 'txtPorcentajeAvance');
+			var avanceCtl = $(avance);
+			var netoCtl = $(neto);
+			
+			if(avanceCtl.value!=''){
+				return netoCtl.value!='';
+			}
+			else{
+				return true;
+			}
+
+		}
+
+		function FechaVtoValidate(sender, parameter){
+			var fvto = sender.options.ControlToValidate;
+			var avance = fvto.replace('dtpFechaVto', 'txtPorcentajeAvance');
+			var avanceCtl = $(avance);
+			var fvtoCtl = $(fvto);
+			
+			if(avanceCtl.value!=''){
+				return fvtoCtl.value!='';
+			}
+			else{
+				return true;
+			}
+
+		}
+	</script>
+	<com:TLabel
+        ID="lblTitulo"
+        Text="Certificación por Periodo"
+        CssClass="maintitle" />
+	<br />
+	<span>Periodo: </span>
+	<com:TDatePicker
+		ID="dtpPeriodo"
+		DateFormat="MM/yyyy"
+		Culture="es"
+		InputMode="DropDownList" />
+	<com:TRequiredFieldValidator
+		ControlToValidate="dtpPeriodo"
+		ErrorMessage="Debe ingresar el periodo de certificación."
+		Display="Dynamic"
+		Text="*"
+		ValidationGroup="Register"/>
+	<com:TDataTypeValidator
+	    ValidationGroup="Register"
+	    ControlToValidate="dtpPeriodo"
+	    DataType="Date"
+	    DateFormat="MM/yyyy"
+	    Text="*"
+	    Display="Dynamic"
+	    ErrorMessage="El formato de periodo es inválido (mm/yyyy)." />
+	<com:TActiveButton
+	    ID="btnBuscar"
+	    Text="Consultar"
+	    OnClick="btnBuscar_OnClick"
+	    ClientSide.OnLoading="Element.show('callback_status')"
+    	ClientSide.OnComplete="Element.hide('callback_status')" />
+	<com:TActivePanel ID="pnlConfirmar" style="margin: 15px 0 0 0; float: right;" Display="None">
+		<com:TImageButton
+			ID="btnAceptar"
+			ToolTip="Guardar"
+			ImageUrl="themes/serviciospublicos/images/invisible.png"
+			CssClass="imgbtn2-guardar"
+			OnClick="btnAceptar_OnClick"
+			Attributes.onclick="return confirm('¿Desea guardar los datos?');"
+			ValidationGroup="Register" />
+		<com:TImageButton
+			ID="btnCancelar"
+			ToolTip="Cancelar"
+			ImageUrl="themes/serviciospublicos/images/invisible.png"
+			CssClass="imgbtn2-cancelar"
+			OnClick="btnCancelar_OnClick" />
+	</com:TActivePanel>
+	<br /><br />
+	<div>
+		<com:TActivePanel 
+			ID="pnlDatos" 
+			Display="None">
+			<div>	
+				<table class="TableForm" width="1200px">
+					<thead>
+						<tr>
+							<th width="150px" style="padding: 1px 2px;">Obra</th>
+							<th width="111px" style="padding: 1px 2px;">Contrato</th>
+							<th width="100px" style="padding: 1px 2px;">Tipo</th>
+							<th width="44px" style="padding: 1px 2px;">Nro.</th>
+							<th width="65px" style="padding: 1px 2px;">$ Certif.</th>
+							<th width="65px" style="padding: 1px 2px;">% Certif.</th>
+							<th width="65px" style="padding: 1px 2px;">Ant. Fin.</th>
+							<th width="65px" style="padding: 1px 2px;">Dto. Ant.</th>
+							<th width="65px" style="padding: 1px 2px;">Ret. Multa</th>
+							<th width="65px" style="padding: 1px 2px;">Ret. Fdo. Rep.</th>
+							<th width="65px" style="padding: 1px 2px;">Redet. Precios</th>
+							<th width="65px" style="padding: 1px 2px;">Otros Conc.</th>
+							<th width="65px" style="padding: 1px 2px;">Imp. Neto</th>
+							<th width="73px" style="padding: 1px 2px;">F. Vto. Pago</th>
+							<th style="padding: 1px 2px;">Mano Obra</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="background-color:#CCC; font-size:10px;">
+							<td colspan="4" align="center"><strong>TOTALES</strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblMontoAvanceTotal" /></strong></td>
+							<td>&nbsp;</td>
+							<td align="right"><strong><com:TActiveLabel ID="lblAnticipoFinancieroTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblDescuentoAnticipoTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblRetencionMultaTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblFondoReparoTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblRedeterminacionPreciosTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblOtrosConceptosTotal" /></strong></td>
+							<td align="right"><strong><com:TActiveLabel ID="lblImporteNetoTotal" /></strong></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="overflow-y: auto;max-height:500px;">
+				<com:TActiveDataGrid
+				    ID="dgDatos"
+					CssClass="TableForm2"
+				    AlternatingItemStyle.BackColor="#EEEEEE"
+				    AutoGenerateColumns="false"
+		            AllowPaging="false"
+					AllowCustomPaging="false"
+			        AllowSorting="false"
+			        ShowHeader="false"
+			        Width="1200px">
+					<com:TBoundColumn DataField="Obra" ItemStyle.Width="150px"/>
+					<com:TBoundColumn DataField="Contrato" ItemStyle.Width="111px"/>
+					<com:TTemplateColumn ID="tcTipo" ItemStyle.Width="100px">
+			            <prop:ItemTemplate>
+			            	<com:TActiveDropDownList
+					       		ID="ddlTipoCertificado"
+					       		ToolTip="Seleccione"
+					       		CssClass="minfont"
+					       		Style="margin: 0px;"
+					       		OnSelectedIndexChanged="page.ddlTipoCertificado_OnSelectedIndexChanged"
+					       		ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')"
+								SelectedValue="<%# $this->Parent->Data['TipoCertificado']%>">
+					       		<com:TListItem Value="0" Text="Obra"/>
+					       		<com:TListItem Value="1" Text="Anticipo" />
+					       		<com:TListItem Value="2" Text="Redeterm." />
+					       		<com:TListItem Value="3" Text="Adic." />
+					       	</com:TActiveDropDownList>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+					<com:TTemplateColumn ID="tcNumero" ItemStyle.Width="44px">
+			            <prop:ItemTemplate>
+			            	<com:THiddenField ID="hdnIdContrato" Value="<%# $this->Parent->Data['IdContrato']%>" />
+			            	<com:THiddenField ID="hdnIdCertificacion" Value="<%# $this->Parent->Data['IdCertificacion']%>" />
+			            	<com:TActiveTextBox
+					       		ID="txtNumero"
+								CssClass="smallest minfont"
+								MaxLength="3"
+					            AutoTrim="True"
+					       		ToolTip="Ingrese el número de certificado"
+					       		Text="<%# $this->Parent->Data['NroCertificado']%>" />
+							<com:TDataTypeValidator
+								ControlToValidate="txtNumero"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Integer"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcMontoAvance" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtMontoAvance"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el $ de certificación"
+						   		Text="<%# $this->Parent->Data['MontoAvance'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtMontoAvance_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+							<com:TCustomValidator
+								ControlToValidate="txtMontoAvance"
+								ErrorMessage="Debe ingresar el $ de certificación."
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"
+								EnableClientScript="True"
+								ClientValidationFunction="MontoValidate"/>
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtMontoAvance"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcPorcentajeAvance" ItemStyle.Width="65px">
+			            <prop:ItemTemplate>
+			            	<com:TActiveTextBox
+						   		ID="txtPorcentajeAvance"
+								CssClass="small53 minfont"
+								MaxLength="9"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el % de certificación"
+						   		Text="<%# $this->Parent->Data['PorcentajeAvance']%>"
+								AutoCompleteType="Disabled"
+								Enabled="false" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtPorcentajeAvance"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+			            </prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcAnticipoFinanciero" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtAnticipoFinanciero"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de anticipo financiero"
+						   		Text="<%# $this->Parent->Data['AnticipoFinanciero'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtAnticipoFinanciero"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcDescuentoAnticipo" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtDescuentoAnticipo"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de descuento de anticipo financiero"
+						   		Text="<%# $this->Parent->Data['DescuentoAnticipo'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtDescuentoAnticipo"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcRetencionMulta" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtRetencionMulta"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de retención por multa"
+						   		Text="<%# $this->Parent->Data['RetencionMulta'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtRetencionMulta"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcFondoReparo" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtFondoReparo"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de retención para fondo de reparo"
+						   		Text="<%# $this->Parent->Data['RetencionFondoReparo'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtFondoReparo"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcRedeterminacionPrecios" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtRedeterminacionPrecios"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de redeterminación de precios"
+						   		Text="<%# $this->Parent->Data['RedeterminacionPrecios'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtRedeterminacionPrecios"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcOtrosConceptos" HeaderText="Otros Conc." ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtOtrosConceptos"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe de otros conceptos"
+						   		Text="<%# $this->Parent->Data['OtrosConceptos'] %>"
+								AutoCompleteType="Disabled"
+								AutoPostBack="true"
+								OnTextChanged="Page.txtImporte_OnTextChanged"
+								ClientSide.OnLoading="Element.show('callback_status')"
+								ClientSide.OnComplete="Element.hide('callback_status')" />
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtOtrosConceptos"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcImporteNeto" HeaderText="Imp. Neto" ItemStyle.Width="65px">
+	             		<prop:ItemTemplate>
+		             		<com:TActiveTextBox
+						   		ID="txtImporteNeto"
+								CssClass="small53 minfont"
+								MaxLength="15"
+								AutoTrim="True"
+						   		ToolTip="Ingrese el importe neto del certificado"
+						   		Text="<%# $this->Parent->Data['ImporteNeto'] %>"
+								AutoCompleteType="Disabled"
+								Enabled="false" />
+							<com:TCustomValidator
+								ControlToValidate="txtImporteNeto"
+								ErrorMessage="Debe ingresar el importe neto de certificación."
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"
+								EnableClientScript="True"
+								ClientValidationFunction="NetoValidate"/>
+						   	<com:TDataTypeValidator
+								ControlToValidate="txtImporteNeto"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Float"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcFechaVto" ItemStyle.Width="73px">
+	             		<prop:ItemTemplate>
+		             		<com:TDatePicker
+								ID="dtpFechaVto"
+								DateFormat="dd/MM/yyyy"
+								Text="<%# $this->Parent->Data['FechaVtoPago'] %>"
+								Culture="es"
+								CssClass="datepicker minfont" />
+							<com:TCustomValidator
+								ControlToValidate="dtpFechaVto"
+								ErrorMessage="Debe ingresar la fecha de vencimiento de pago de la certificación."
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"
+								EnableClientScript="True"
+								ClientValidationFunction="FechaVtoValidate"/>
+							<com:TDataTypeValidator
+							    ValidationGroup="Register"
+							    ControlToValidate="dtpFechaVto"
+							    DataType="Date"
+							    DateFormat="dd/MM/yyyy"
+							    Text="*"
+							    Display="Dynamic"
+							    ErrorMessage="El formato de fecha es inválido (dd/mm/yyyy)." />
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+	             	<com:TTemplateColumn ID="tcManoObra" HeaderText="Mano Obra" ItemStyle.Width="45px">
+	             		<prop:ItemTemplate>
+		             		<com:TTextBox
+						   		ID="txtManoObra"
+								CssClass="smallest minfont"
+								MaxLength="5"
+								AutoTrim="True"
+						   		ToolTip="Ingrese la cantidad de mano de obra ocupada"
+								AutoCompleteType="Disabled"
+								Text="<%# $this->Parent->Data['ManoObraOcupada'] %>" />
+							<com:TDataTypeValidator
+								ControlToValidate="txtManoObra"
+								ErrorMessage="Debe ingresar un número válido."
+								DataType="Integer"
+								Display="Dynamic"
+								Text="*"
+								ValidationGroup="Register"/>
+						</prop:ItemTemplate>
+	             	</com:TTemplateColumn>
+			  	</com:TActiveDataGrid>
+		  	</div>
+			<com:TValidationSummary
+				ShowMessageBox="false"
+				ShowSummary="true"
+				ValidationGroup="Register"
+				Display="Dynamic"
+				CssClass="Summary"/>
+		</com:TActivePanel>
+	</div>
+</com:TContent>

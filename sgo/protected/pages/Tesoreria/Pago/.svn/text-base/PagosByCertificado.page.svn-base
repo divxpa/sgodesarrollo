@@ -1,0 +1,32 @@
+<%@  Title="S.G.O. - Pagos de Certificación" %>
+<com:TContent ID="MainContent">
+	<span class="maintitle">Pagos de Certificación</span><br />
+	<span class="maintitle2">Obra: </span>
+	<com:TLabel 
+		ID="lblObra"
+		CssClass="maintitle2" /><br />
+	<span class="maintitle2">Contrato: </span>
+	<com:TLabel 
+		ID="lblContrato"
+		CssClass="maintitle2" /><br />
+	<span class="maintitle2">Certificación: </span>
+	<com:TLabel 
+		ID="lblCertificacion"
+		CssClass="maintitle2" />
+	<div>
+		<div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="false"
+				AllowCustomPaging="false"
+		        AllowSorting="false">
+				<com:TBoundColumn DataField="Fecha" HeaderText="F. Pago" ItemStyle.HorizontalAlign="Center"/>
+				<com:TBoundColumn DataField="OrdenPago" HeaderText="Orden de Pago" ItemStyle.HorizontalAlign="Right"/>
+				<com:TBoundColumn DataField="Importe" HeaderText="Imp. Pagado" DataFormatString="#number_format({0},2,',','.')" ItemStyle.HorizontalAlign="Right"/>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

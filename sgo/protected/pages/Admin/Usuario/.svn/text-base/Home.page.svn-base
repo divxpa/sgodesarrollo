@@ -1,0 +1,78 @@
+<%@  Title="S.G.O. - Usuarios" %>
+<com:TContent ID="MainContent">
+	<div id="button-bar-top"  style="margin-top: 10px;">
+		<com:THyperLink
+			CssClass="imgbtn2-nuevo"
+            NavigateUrl="?page=Admin.Usuario.Update"
+	        ToolTip="Haga click aquí para agregar un nuevo registro">
+            <img src="themes/serviciospublicos/images/btn2nuevo.png" border="0"/>
+	    </com:THyperLink>
+	</div>
+	<com:TActiveLabel
+        ID="lblTitulo"
+        Text="Usuarios"
+        CssClass="maintitle" />
+	<div>
+		<div>
+			<div class="searcher">
+				<span>Organismo: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlOrganismo"
+		       		ToolTip="Seleccione"
+		       		DataTextField="Nombre"
+		       		DatavalueField="IdOrganismo" />
+		       	<span>Estado: </span>
+				<com:TActiveDropDownList
+		       		ID="ddlEstado"
+		       		ToolTip="Seleccione">
+		       		<com:TListItem Value="-1" Text="Todos" Selected="True" />
+		       		<com:TListItem Value="1" Text="Activo" />
+		       		<com:TListItem Value="0" Text="Inactivo" />
+		       	</com:TActiveDropDownList>
+		       	<br />
+				<span>Búsqueda:</span>
+				<com:TActiveTextBox
+				    ID="txtBusqueda"
+				    AutoTrim="true"
+				    CssClass="large"
+				    ToolTip="Ingrese criterio de búsqueda" />
+				<com:TActiveButton
+				    ID="btnBuscar"
+				    Text="Buscar"
+				    OnClick="btnBuscar_OnClick"
+				    ClientSide.OnLoading="Element.show('callback_status')"
+		        	ClientSide.OnComplete="Element.hide('callback_status')" />
+			</div>
+			<com:TActiveDataGrid
+			    ID="dgDatos"
+				CssClass="TableForm"
+			    AlternatingItemStyle.BackColor="#EEEEEE"
+			    AutoGenerateColumns="false"
+	            AllowPaging="true"
+				AllowCustomPaging="false"
+				PageSize="15"
+		        PagerStyle.Mode="Numeric"
+		        PagerStyle.HorizontalAlign="Right"
+				PagerStyle.CssClass="pager"
+		        AllowSorting="false"
+		        OnPageIndexChanged="dgDatos_OnPageIndexChanged"
+		        OnPagerCreated="dgDatos_OnPagerCreated">
+				<com:TBoundColumn DataField="ApellidoNombre" HeaderText="Apellido y Nombre" />
+				<com:TBoundColumn DataField="Username" HeaderText="Nombre de Usuario"/>
+				<com:TBoundColumn DataField="Organismo" HeaderText="Organismo"/>
+				<com:TBoundColumn DataField="Rol" HeaderText="Rol"/>
+				<com:TBoundColumn DataField="ActivoDesc" HeaderText="Activo" ItemStyle.HorizontalAlign="Center"/>
+				<com:TTemplateColumn ID="tcEditar" HeaderText="Editar" ItemStyle.HorizontalAlign="Center">
+		            <prop:ItemTemplate>
+				       	<com:TActiveHyperLink
+				            ID="hlEditar"
+				            ToolTip="Haga click aquí para editar"
+				            NavigateUrl="?page=Admin.Usuario.Update&id=<%# $this->Parent->Data['IdUsuario']%>">
+				            <img src="themes/serviciospublicos/images/btnEditar.png" border="0"/>
+				    	</com:TActiveHyperLink>
+		            </prop:ItemTemplate>
+             	</com:TTemplateColumn>
+		  	</com:TActiveDataGrid>
+		</div>
+	</div>
+</com:TContent>

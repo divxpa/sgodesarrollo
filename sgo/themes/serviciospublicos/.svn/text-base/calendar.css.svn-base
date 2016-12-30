@@ -1,0 +1,39 @@
+/* Calendar Styles */
+.calendar {width:100%; border-collapse:collapse;font-size: 12px;margin: 10px 0px }
+.calendar tr.navigation th {padding-bottom:20px;}
+.calendar th.prev-month {text-align:left;}
+.calendar th.prev-month input {font-size: 20px;padding: 5px 10px;font-style: normal;text-transform: capitalize;}
+.calendar th.current-month {text-align:center; font-size: 30px;text-transform: capitalize;font-weight: normal;}
+.calendar th.current-month span{margin-right: 20px;}
+.calendar th.current-month input{background:#ff99aa; font-size: 14px;}
+.calendar th.next-month {text-align:right;}
+.calendar th.next-month input {font-size: 20px;padding: 5px 10px;font-style: normal;text-transform: capitalize;}
+.calendar tr.weekdays th {text-align:center;}
+.calendar td {width:14%; height:100px; vertical-align:top; border:1px solid #CCC;background: #fff}
+.calendar td.today {background:#ff99aa;}
+.calendar td.prev-next {background:#EEE;}
+.calendar td.prev-next span.date {color:#9C9C9C;}
+.calendar td.holiday {background:#DDFFDE;}
+.calendar span.date {display:block; padding:4px; line-height:12px; background:#E0ECF8;}
+.calendar div.day-content {}
+.calendar ul.output {margin:0; padding:0px /*4px*/; list-style:none;background:#ffffaa;}
+.calendar ul.output li {margin:0; padding:4px ; line-height:1em; border:1px solid #ffffaa;}
+.calendar ul.output li:last-child {border:0;}
+.calendar ul.output a{text-decoration: none;color: #6E6E6E}
+.calendar ul.output li:hover{background-color: #EFF5FB;border:1px solid blue;}
+
+.weekdays{text-transform: capitalize;background:#4486F7 url(images/bg.png) repeat-x 0 -110px;
+          box-shadow:0 2px 2px rgba(0,0,0, .5);
+	-moz-box-shadow:0 2px 2px rgba(0,0,0, .5);
+	-webkit-box-shadow:0 2px 2px rgba(0,0,0, .5);
+font-size: 14px;color:#fff}
+.weekdays th{padding: 5px;border-bottom: 2px solid #000044;font-weight: normal;}
+
+/* Small Calendar */
+.calendar.small {width:auto; border-collapse:separate;}
+.calendar.small tr.navigation th {padding-bottom:5px;}
+.calendar.small tr.navigation th a span {font-size:1.5em;}
+.calendar.small th.current-month {font-size:1em;}
+.calendar.small tr.weekdays th {text-align:center;}
+.calendar.small td {width:auto; height:auto; padding:4px 8px; text-align:center; border:0; background:#EEE;}
+.calendar.small span.date {display:inline; padding:0; background:none;}
